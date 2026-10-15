@@ -1,0 +1,78 @@
+@import "tailwindcss";
+@import "./tokens.css";
+
+/* Tema escuro: marcado pelo next-themes, ou pelo sistema quando ainda não há JS. */
+@custom-variant dark {
+  &:where([data-theme="dark"], [data-theme="dark"] *) {
+    @slot;
+  }
+  @media (prefers-color-scheme: dark) {
+    &:where(:root:not([data-theme]), :root:not([data-theme]) *) {
+      @slot;
+    }
+  }
+}
+
+@utility tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+    /* O header é sticky: âncoras e foco não ficam escondidos atrás dele. */
+    scroll-padding-top: calc(var(--target-min) + var(--space-6));
+  }
+
+  a,
+  button,
+  summary {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: var(--font-manrope), var(--font-family-sans);
+    font-size: var(--type-body-font-size);
+    line-height: var(--type-body-line-height);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Anel de foco do design system: 2px em focus-ring, afastado 2px. */
+  :focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 2px;
+  }
+
+  ::selection {
+    background-color: var(--accent-soft);
+    color: var(--accent-strong);
+  }
+}
+
+/* Elementos animados começam ocultos pelo Motion. Com movimento reduzido
+   eles aparecem no estado final; sem JS, o <noscript> do layout faz o mesmo. */
+@media (prefers-reduced-motion: reduce) {
+  [data-motion-final] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  [data-motion-only] {
+    display: none !important;
+  }
+}
+
+/* Pontos de "digitando": só existem enquanto o assistente digita. */
+@keyframes kort-typing {
+  0%,
+  60%,
+  100% {
+    transform: translateY(0);
+  }
+  30% {
+    transform: translateY(calc(var(--space-1) * -1.5));
+  }
+}
