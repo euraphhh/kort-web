@@ -1,0 +1,69 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap");
+
+/* kort components — every value comes from tokens.css */
+
+.kort-logo { display: inline-block; color: var(--text); vertical-align: middle; }
+.kort-logo__bg { fill: var(--accent); }
+.kort-logo__mark { stroke: var(--on-accent); }
+
+.kort-icon { width: var(--icon-ui); height: var(--icon-ui); flex: none; }
+
+.kort-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2);
+  min-height: var(--target-min); padding: 0 18px; box-sizing: border-box;
+  border-radius: var(--radius-md); border: 1.5px solid transparent;
+  font-family: var(--font-sans); font-size: 15px; line-height: 22px; font-weight: 600;
+  cursor: pointer; text-decoration: none; white-space: nowrap;
+}
+.kort-btn:focus-visible, .kort-field__input:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 2px; }
+.kort-btn:disabled { opacity: 0.45; cursor: not-allowed; }
+.kort-btn--primary { background: var(--accent); color: var(--on-accent); }
+.kort-btn--primary:hover:not(:disabled) { background: var(--accent-strong); }
+.kort-btn--secondary { background: var(--surface-1); color: var(--text); border-color: var(--border-control); }
+.kort-btn--secondary:hover:not(:disabled) { background: var(--surface-2); }
+.kort-btn--ghost { background: transparent; color: var(--accent); }
+.kort-btn--ghost:hover:not(:disabled) { background: var(--accent-soft); color: var(--accent-strong); }
+.kort-btn--danger { background: transparent; color: var(--danger); border-color: var(--danger); }
+.kort-btn--danger:hover:not(:disabled) { background: var(--surface-2); }
+.kort-btn--block { width: 100%; }
+
+.kort-badge {
+  display: inline-flex; align-items: center; gap: 6px; padding: 3px 10px;
+  border-radius: var(--radius-pill); border: 1.5px solid currentColor;
+  font-family: var(--font-sans); font-size: 13px; line-height: 18px; font-weight: 600; white-space: nowrap;
+}
+.kort-badge--scheduled { color: var(--text-muted); border-color: var(--border-control); }
+.kort-badge--confirmed { color: var(--state-confirmed); }
+.kort-badge--unconfirmed { color: var(--state-unconfirmed); border-style: dashed; }
+.kort-badge--noshow { color: var(--state-noshow); }
+.kort-badge--cancelled { color: var(--state-cancelled); }
+
+.kort-counter {
+  display: inline-flex; align-items: baseline; gap: 6px; padding: 6px 12px;
+  border-radius: var(--radius-pill); background: var(--accent-soft); color: var(--accent-strong);
+  font-family: var(--font-sans); font-size: 13px; line-height: 18px; font-weight: 600;
+}
+.kort-counter__n { font-weight: 700; font-variant-numeric: tabular-nums; }
+
+.kort-row {
+  display: grid; grid-template-columns: 56px minmax(0, 1fr) auto; align-items: center; gap: var(--space-4);
+  min-height: var(--target-min); padding: var(--space-3) 0; border-top: 1px solid var(--border);
+  font-family: var(--font-sans); color: var(--text);
+}
+.kort-row__time { font-size: 15px; line-height: 22px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.kort-row__service { margin: 0; font-size: 15px; line-height: 22px; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.kort-row__client { margin: 0; font-size: 13px; line-height: 18px; font-weight: 500; color: var(--text-muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.kort-row--cancelled .kort-row__time, .kort-row--cancelled .kort-row__service { color: var(--state-cancelled); text-decoration: line-through; }
+
+.kort-field { display: flex; flex-direction: column; gap: 6px; font-family: var(--font-sans); }
+.kort-field__label { font-size: 13px; line-height: 18px; font-weight: 600; color: var(--text); }
+.kort-field__input {
+  min-height: var(--target-min); box-sizing: border-box; padding: 0 14px;
+  border-radius: var(--radius-md); border: 1.5px solid var(--border-control);
+  background: var(--surface-1); color: var(--text);
+  font-family: var(--font-sans); font-size: 15px; line-height: 22px;
+}
+.kort-field__input::placeholder { color: var(--text-muted); }
+.kort-field__hint { font-size: 13px; line-height: 18px; font-weight: 500; color: var(--text-muted); }
+.kort-field--error .kort-field__input { border-color: var(--danger); }
+.kort-field--error .kort-field__hint { color: var(--danger); }

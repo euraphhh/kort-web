@@ -1,0 +1,26 @@
+{
+  "v": 3,
+  "layout": "files",
+  "createdOnFiles": {"v": 1, "at": "2026-10-14T23:35:00Z"},
+  "title": "kort",
+  "namespace": "Kort",
+  "libraries": [{"name": "react", "version": "18"}, {"name": "react-dom", "version": "18"}],
+  "sections": {},
+  "groups": ["Logos"],
+  "assetGroups": {
+    "Logos": {
+      "name": "Logos",
+      "tile": "l",
+      "order": ["kort-wordmark.svg", "kort-wordmark-creme.svg", "kort-icone.svg", "kort-icone-escuro.svg"],
+      "files": {
+        "kort-wordmark.svg": {"name": "kort-wordmark.svg", "blob": "d11bd03047c51a3ca0121683554b94f4", "size": 494, "type": "image/svg+xml"},
+        "kort-wordmark-creme.svg": {"name": "kort-wordmark-creme.svg", "blob": "5bfadb8a03b346a53997eac5b3d8c1da", "size": 494, "type": "image/svg+xml"},
+        "kort-icone.svg": {"name": "kort-icone.svg", "blob": "a126282d6d3fb2db8ce933043727f9ee", "size": 608, "type": "image/svg+xml"},
+        "kort-icone-escuro.svg": {"name": "kort-icone-escuro.svg", "blob": "5effff64a7b5696e31b9e758508a2fbd", "size": 608, "type": "image/svg+xml"}
+      }
+    }
+  },
+  "blobs": {},
+  "docs": {"sections": []},
+  "lastChange": {"by": "Raphael Ortiz Xavier", "at": "2026-10-15T02:55:00Z", "via": "Claude", "note": "Ícone novo: o ko do logo ampliado e recortado pelo quadrado, no lugar do balão."}
+}

@@ -1,0 +1,11 @@
+<!-- @dsCard group="Agenda" height=96 -->
+<div id="root" style="padding: 24px; background: var(--surface-1); display: flex; align-items: center; gap: 8px; flex-wrap: wrap;"></div>
+<script>
+  var h = React.createElement, K = window.Kort;
+  ReactDOM.createRoot(document.getElementById('root')).render(
+    h(React.Fragment, null,
+      h(K.Counter, { count: 2, label: 'a fechar' }),
+      h(K.Counter, { count: 1, label: 'não confirmado' })
+    )
+  );
+</script>

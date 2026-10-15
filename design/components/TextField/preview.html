@@ -1,0 +1,11 @@
+<!-- @dsCard group="Formulários" height=200 -->
+<div id="root" style="padding: 24px; background: var(--surface-1); display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; max-width: 640px;"></div>
+<script>
+  var h = React.createElement, K = window.Kort;
+  ReactDOM.createRoot(document.getElementById('root')).render(
+    h(React.Fragment, null,
+      h(K.TextField, { label: 'Nome do serviço', placeholder: 'Ex.: Corte e barba', hint: 'Aparece para o cliente no WhatsApp.' }),
+      h(K.TextField, { label: 'Duração (min)', inputMode: 'numeric', defaultValue: '', error: 'Informe a duração em minutos.' })
+    )
+  );
+</script>

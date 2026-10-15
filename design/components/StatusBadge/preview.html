@@ -1,0 +1,15 @@
+<!-- @dsCard group="Agenda" height=100 -->
+<div id="root" style="padding: 24px; background: var(--surface-1); display: flex; align-items: center; gap: 10px; flex-wrap: wrap;"></div>
+<script>
+  var h = React.createElement, K = window.Kort;
+  ReactDOM.createRoot(document.getElementById('root')).render(
+    h(React.Fragment, null,
+      h(K.StatusBadge, { status: 'scheduled' }),
+      h(K.StatusBadge, { status: 'confirmed' }),
+      h(K.StatusBadge, { status: 'unconfirmed' }),
+      h(K.StatusBadge, { status: 'noshow' }),
+      h(K.StatusBadge, { status: 'cancelled' }),
+      h(K.StatusBadge, { status: 'confirmed', label: 'Compareceu' })
+    )
+  );
+</script>

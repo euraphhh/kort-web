@@ -1,0 +1,33 @@
+<!-- @dsCard height=288 -->
+<style>
+  .kc { position: relative; width: 960px; height: 288px; background: var(--bg); overflow: hidden; font-family: var(--font-sans); }
+  .kc svg { position: absolute; left: 480px; top: 0; }
+  .kc .couro { fill: var(--brand-couro); }
+  .kc .camurca { fill: var(--brand-camurca); }
+  .kc .ink { fill: var(--text); }
+  .kc .slab { rx: var(--radius-xl); }
+  .kc .ring { fill: none; stroke: var(--brand-creme); stroke-width: var(--space-3); }
+  .kc .txt { position: absolute; left: 40px; bottom: 36px; max-width: 440px; }
+  .kc .name { margin: 0; font-size: 120px; line-height: 0.95; font-weight: 700; letter-spacing: -0.03em; color: var(--text); }
+  .kc .tag { margin: 8px 0 0; font-size: 14px; line-height: 20px; color: var(--text-muted); }
+</style>
+<div class="kc">
+  <svg viewBox="0 0 480 288" width="480" height="288" aria-hidden="true">
+    <!--
+      blocks: brand-couro slab 192x276 (radius-xl), brand-camurca disc 128 (half side), text pill 240x64 (half short side) bleeding off the right
+      arrangement: one tall slab bleeding off the top with two satellites, gaps of space-6 (32px)
+      pattern: rings (soft, friendly, large radii + the literal motif: the o of the logo is a speech-bubble ring), three on the slab in brand-creme
+      scales: space-3 ring stroke, space-6 gaps, ring pitch 2 x space-7 (80px), radius-xl slab corners
+    -->
+    <rect class="couro slab" x="40" y="-28" width="192" height="276"/>
+    <circle class="ring" cx="136" cy="48" r="24"/>
+    <circle class="ring" cx="136" cy="128" r="24"/>
+    <circle class="ring" cx="136" cy="208" r="24"/>
+    <rect class="camurca" x="264" y="24" width="128" height="128" rx="64"/>
+    <rect class="ink" x="264" y="184" width="240" height="64" rx="32"/>
+  </svg>
+  <div class="txt">
+    <p class="name">kort</p>
+    <p class="tag">chamou, agendou.</p>
+  </div>
+</div>

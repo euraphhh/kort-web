@@ -1,0 +1,14 @@
+<!-- @dsCard group="Agenda" height=360 -->
+<div id="root" style="padding: 8px 24px 16px; background: var(--surface-1); max-width: 560px;"></div>
+<script>
+  var h = React.createElement, K = window.Kort;
+  ReactDOM.createRoot(document.getElementById('root')).render(
+    h(React.Fragment, null,
+      h(K.AppointmentRow, { time: '08h00', service: 'Corte', client: 'Diego Souza', status: 'noshow' }),
+      h(K.AppointmentRow, { time: '09h00', service: 'Corte', client: 'Pedro Alves', status: 'confirmed' }),
+      h(K.AppointmentRow, { time: '09h30', service: 'Barba', client: 'Lucas Martins', status: 'unconfirmed' }),
+      h(K.AppointmentRow, { time: '10h30', service: 'Corte e barba', client: 'Rafael Costa', professional: 'João', status: 'scheduled' }),
+      h(K.AppointmentRow, { time: '11h00', service: 'Pézinho', client: 'Caio Lima', status: 'cancelled' })
+    )
+  );
+</script>

@@ -1,0 +1,14 @@
+<!-- @dsCard group="Marca" height=160 subtitle="wordmark e ícone" -->
+<div id="root" style="padding: 24px; background: var(--bg); display: flex; align-items: center; gap: 32px; flex-wrap: wrap;"></div>
+<script>
+  var h = React.createElement, K = window.Kort;
+  ReactDOM.createRoot(document.getElementById('root')).render(
+    h(React.Fragment, null,
+      h(K.Logo, { size: 200 }),
+      h(K.Logo, { size: 96 }),
+      h(K.Logo, { variant: 'icon', size: 72 }),
+      h(K.Logo, { variant: 'icon', size: 40 }),
+      h(K.Logo, { variant: 'icon', size: 32 })
+    )
+  );
+</script>
