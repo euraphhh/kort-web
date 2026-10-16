@@ -90,7 +90,11 @@
           }
         ]
       }
-    ]
+    ],
+    "families": {
+      "serif": "\"Instrument Serif\", Georgia, serif",
+      "note": "Só na landing: itálico, nas palavras de destaque dos títulos (ex.: \"atende.\"). Nunca em corpo, UI ou painel."
+    }
   },
   "spacing": {
     "tokens": [

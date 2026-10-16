@@ -10,7 +10,7 @@
   --bubble: var(--motif);
   --shadow: var(--shadow-float);
   --font: var(--font-manrope), system-ui, sans-serif;
-  --serif: var(--font-serif), Georgia, serif;
+  --serif: var(--font-instrument-serif), var(--font-family-serif);
   --ease: var(--ease-out);
   --pad: clamp(1.25rem, 5vw, 5rem);
   --max: 1320px;

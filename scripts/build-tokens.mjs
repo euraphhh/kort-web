@@ -65,6 +65,7 @@ for (const t of [...spaceTokens, ...sizeTokens]) fixed.push(decl(t.name, t.value
 for (const t of motionTokens) fixed.push(decl(t.name, t.value));
 
 fixed.push(decl("font-family-sans", ds.type.families.sans));
+if (ext.type?.families?.serif) fixed.push(decl("font-family-serif", ext.type.families.serif));
 for (const s of typeStyles) {
   fixed.push(decl(`type-${s.name}-font-size`, s.fontSize));
   fixed.push(decl(`type-${s.name}-line-height`, s.lineHeight));
@@ -95,6 +96,7 @@ const themeInline = [
     .filter((t) => t.name === "container" || t.name === "prose")
     .map((t) => decl(`container-${t.name}`, `var(--${t.name})`)),
   decl("font-sans", "var(--font-manrope), var(--font-family-sans)"),
+  ...(ext.type?.families?.serif ? [decl("font-serif", "var(--font-instrument-serif), var(--font-family-serif)")] : []),
   "  --text-*: initial;",
   ...typeStyles.flatMap((s) => [
     decl(`text-${s.name}`, `var(--type-${s.name}-font-size)`),
