@@ -1,64 +1,123 @@
-import { DsIcon, type DsIconName } from "./ds-icon";
+"use client";
+import { motion } from "motion/react";
+import { MaskLine, Reveal } from "./reveal";
 
-// StatusBadge, Counter e AppointmentRow do design system (design/components).
-// Estado nunca só por cor: sempre ícone e palavra; "não confirmado" é tracejado.
+type Slot = { at: number; dur: number; label: string; wa?: boolean; fresh?: boolean };
+const PX = 1.1; // px por minuto
+const START = 9; // 9h
+const END = 19;
 
-export type AppointmentStatus = "scheduled" | "confirmed" | "unconfirmed" | "noshow" | "cancelled";
+const PROS: { name: string; slots: Slot[] }[] = [
+  {
+    name: "Marcos",
+    slots: [
+      { at: 0, dur: 30, label: "Corte · João" },
+      { at: 90, dur: 60, label: "Corte + barba · Pedro", wa: true },
+      { at: 270, dur: 30, label: "Barba · Caio" },
+      { at: 360, dur: 30, label: "Corte · Rui", wa: true },
+      { at: 510, dur: 30, label: "Corte · novo", wa: true, fresh: true },
+    ],
+  },
+  {
+    name: "Léo",
+    slots: [
+      { at: 30, dur: 45, label: "Corte + sobrancelha · Davi", wa: true },
+      { at: 150, dur: 30, label: "Barba · Enzo" },
+      { at: 300, dur: 60, label: "Corte + barba · Théo", wa: true },
+      { at: 540, dur: 30, label: "Corte · Nando" },
+    ],
+  },
+  {
+    name: "Dudu",
+    slots: [
+      { at: 0, dur: 30, label: "Corte · Beto" },
+      { at: 60, dur: 30, label: "Pezinho · Igor", wa: true },
+      { at: 240, dur: 45, label: "Corte · Vini" },
+      { at: 420, dur: 30, label: "Barba · Gui", wa: true },
+      { at: 480, dur: 60, label: "Corte + barba · Lucas", wa: true },
+    ],
+  },
+];
 
-const statuses: Record<AppointmentStatus, { label: string; icon: DsIconName; className: string }> = {
-  scheduled: { label: "Agendado", icon: "dot", className: "text-text-muted border-border-control" },
-  confirmed: { label: "Confirmado", icon: "check", className: "text-state-confirmed border-current" },
-  unconfirmed: { label: "Não confirmado", icon: "clock", className: "text-state-unconfirmed border-current border-dashed" },
-  noshow: { label: "Faltou", icon: "x", className: "text-state-noshow border-current" },
-  cancelled: { label: "Cancelado", icon: "ban", className: "text-state-cancelled border-current" },
-};
-
-export function StatusBadge({ status, label }: { status: AppointmentStatus; label?: string }) {
-  const s = statuses[status];
+export default function Agenda() {
+  const hours = Array.from({ length: END - START }, (_, i) => START + i);
+  const height = (END - START) * 60 * PX;
   return (
-    <span
-      className={`inline-flex items-center gap-1 rounded-pill border-[1.5px] px-2 py-0.5 text-small font-semibold whitespace-nowrap ${s.className}`}
-    >
-      <DsIcon name={s.icon} />
-      {label ?? s.label}
-    </span>
-  );
-}
-
-export function Counter({ count, label }: { count: number; label: string }) {
-  if (count === 0) return null;
-  return (
-    <span className="inline-flex items-baseline gap-1 rounded-pill bg-accent-soft px-3 py-1 text-small font-semibold text-accent-strong">
-      <span className="tabular font-bold">{count}</span>
-      {label}
-    </span>
-  );
-}
-
-export function AppointmentRow({
-  time,
-  service,
-  client,
-  professional,
-  status = "scheduled",
-}: {
-  time: string;
-  service: string;
-  client: string;
-  professional?: string;
-  status?: AppointmentStatus;
-}) {
-  const cancelled = status === "cancelled";
-  return (
-    <div className="grid min-h-target-min grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-4 border-t border-border py-3 first:border-t-0">
-      <span className={`tabular w-8 text-time ${cancelled ? "text-state-cancelled line-through" : ""}`}>{time}</span>
-      <div className="min-w-0">
-        <p className={`truncate text-body-strong ${cancelled ? "text-state-cancelled line-through" : ""}`}>{service}</p>
-        <p className="truncate text-small text-text-muted">
-          {professional ? `${client} · com ${professional}` : client}
-        </p>
+    <section id="agenda" className="section agenda">
+      <div className="agenda-head">
+        <h2 className="h2">
+          <MaskLine inView>Uma agenda</MaskLine>
+          <MaskLine inView delay={0.12}>
+            por <em>profissional.</em>
+          </MaskLine>
+        </h2>
+        <Reveal delay={0.1}>
+          <p className="lead">
+            Cada barbeiro com a sua coluna e serviços de durações diferentes. O que o assistente marca no WhatsApp cai
+            direto no lugar certo.
+          </p>
+        </Reveal>
       </div>
-      <StatusBadge status={status} />
-    </div>
+
+      <Reveal y={40}>
+        <div className="agenda-board" role="img" aria-label="Exemplo de agenda com três profissionais e horários marcados">
+          <div className="agenda-scroll">
+            <div className="agenda-grid" style={{ ["--h" as string]: `${height}px` }}>
+              <div className="agenda-axis" aria-hidden="true">
+                <div className="agenda-corner" />
+                <div className="agenda-hours">
+                  {hours.map((h) => (
+                    <span key={h} style={{ top: (h - START) * 60 * PX }}>
+                      {h}h
+                    </span>
+                  ))}
+                </div>
+              </div>
+              {PROS.map((p, ci) => (
+                <div className="agenda-col" key={p.name}>
+                  <div className="agenda-colhead">
+                    <span className="avatar">{p.name[0]}</span>
+                    {p.name}
+                  </div>
+                  <div className="agenda-lane">
+                    {hours.map((h) => (
+                      <i key={h} className="agenda-tick" style={{ top: (h - START) * 60 * PX }} />
+                    ))}
+                    {p.slots.map((s, si) => (
+                      <motion.div
+                        key={s.label}
+                        className={`slot ${s.wa ? "slot-wa" : ""} ${s.fresh ? "slot-fresh" : ""}`}
+                        style={{ top: s.at * PX + 2, height: s.dur * PX - 4, transformOrigin: "top" }}
+                        initial={{ scaleY: 0, opacity: 0 }}
+                        whileInView={{ scaleY: 1, opacity: 1 }}
+                        viewport={{ once: true, amount: 0.2 }}
+                        transition={{
+                          duration: 0.6,
+                          delay: s.fresh ? 1.9 : ci * 0.12 + si * 0.09,
+                          ease: [0.22, 1, 0.36, 1],
+                        }}
+                        whileHover={{ y: -2, scale: 1.02 }}
+                      >
+                        <span>{s.label}</span>
+                        {s.fresh && <b className="slot-tag">novo no WhatsApp</b>}
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="agenda-legend">
+            <span>
+              <i className="lg lg-wa" /> marcado pelo assistente
+            </span>
+            <span>
+              <i className="lg lg-manual" /> marcado na barbearia
+            </span>
+            <span className="fine">Agenda de exemplo.</span>
+          </div>
+        </div>
+      </Reveal>
+    </section>
   );
 }

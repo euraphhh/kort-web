@@ -3,61 +3,237 @@
   "note": "Extensão proposta para a landing. Mesmo formato de tokens.json; aliases {token} podem apontar para tokens do design system. Pendente de entrar no design system.",
   "color": {
     "tokens": [
-      {"name": "chat-bg", "value": "{surface-2}", "usage": "Fundo da conversa no mock de WhatsApp."},
-      {"name": "chat-bubble-client", "value": "{accent-soft}", "usage": "Balão do cliente final no mock de WhatsApp (placa App e WhatsApp da identidade)."},
-      {"name": "chat-bubble-assistant", "value": "{surface-1}", "usage": "Balão do assistente no mock de WhatsApp, com borda `border`."},
-      {"name": "device-frame", "value": {"light": "{brand-tinta}", "dark": "{border}"}, "usage": "Moldura do celular nos mocks. No escuro usa a borda para não sumir no fundo."}
+      {
+        "name": "chat-bg",
+        "value": "{surface-2}",
+        "usage": "Fundo da conversa no mock de WhatsApp."
+      },
+      {
+        "name": "chat-bubble-client",
+        "value": "{accent-soft}",
+        "usage": "Balão do cliente final no mock de WhatsApp (placa App e WhatsApp da identidade)."
+      },
+      {
+        "name": "chat-bubble-assistant",
+        "value": "{surface-1}",
+        "usage": "Balão do assistente no mock de WhatsApp, com borda `border`."
+      },
+      {
+        "name": "device-frame",
+        "value": {
+          "light": "{brand-tinta}",
+          "dark": "{border}"
+        },
+        "usage": "Moldura do celular nos mocks. No escuro usa a borda para não sumir no fundo."
+      },
+      {
+        "name": "ok",
+        "value": {
+          "light": "#3F7D58",
+          "dark": "#7FC19A"
+        },
+        "usage": "Ponto online e selo \"conta oficial\" no mock de WhatsApp. Só marketing; no produto o estado usa state-confirmed."
+      },
+      {
+        "name": "motif",
+        "value": {
+          "light": "{brand-camurca}",
+          "dark": "{brand-couro}"
+        },
+        "usage": "Balão gigante do hero (o motivo da página)."
+      },
+      {
+        "name": "cta-bg",
+        "value": "{brand-couro}",
+        "usage": "Fundo do bloco final de chamada."
+      },
+      {
+        "name": "cta-ink",
+        "value": "{brand-creme}",
+        "usage": "Texto no bloco final."
+      },
+      {
+        "name": "foot-bg",
+        "value": {
+          "light": "{brand-tinta}",
+          "dark": "#0D0B09"
+        },
+        "usage": "Fundo do rodapé."
+      },
+      {
+        "name": "foot-ink",
+        "value": "{brand-creme}",
+        "usage": "Texto do rodapé."
+      }
     ]
   },
   "type": {
     "groups": [
-      {"name": "Marketing", "family": "sans", "styles": [
-        {"name": "display-lg", "fontSize": "56px", "lineHeight": "60px", "fontWeight": 700, "letterSpacing": "-0.03em", "usage": "Headline do hero a partir de `lg`. No celular use `display`."},
-        {"name": "lead", "fontSize": "18px", "lineHeight": "28px", "fontWeight": 400, "usage": "Parágrafo de abertura do hero e de seção."}
-      ]}
+      {
+        "name": "Marketing",
+        "family": "sans",
+        "styles": [
+          {
+            "name": "display-lg",
+            "fontSize": "56px",
+            "lineHeight": "60px",
+            "fontWeight": 700,
+            "letterSpacing": "-0.03em",
+            "usage": "Headline do hero a partir de `lg`. No celular use `display`."
+          },
+          {
+            "name": "lead",
+            "fontSize": "18px",
+            "lineHeight": "28px",
+            "fontWeight": 400,
+            "usage": "Parágrafo de abertura do hero e de seção."
+          }
+        ]
+      }
     ]
   },
   "spacing": {
     "tokens": [
-      {"name": "space-9", "value": "96px", "usage": "Respiro vertical entre seções de marketing no desktop."}
+      {
+        "name": "space-9",
+        "value": "96px",
+        "usage": "Respiro vertical entre seções de marketing no desktop."
+      }
     ]
   },
   "radius": {
     "tokens": [
-      {"name": "radius-bubble", "value": "14px", "usage": "Cantos do balão de conversa."},
-      {"name": "radius-bubble-tail", "value": "4px", "usage": "Canto do balão do lado de quem falou."},
-      {"name": "radius-device", "value": "44px", "usage": "Moldura do celular."},
-      {"name": "radius-device-screen", "value": "34px", "usage": "Tela dentro da moldura."}
+      {
+        "name": "radius-bubble",
+        "value": "14px",
+        "usage": "Cantos do balão de conversa."
+      },
+      {
+        "name": "radius-bubble-tail",
+        "value": "4px",
+        "usage": "Canto do balão do lado de quem falou."
+      },
+      {
+        "name": "radius-device",
+        "value": "44px",
+        "usage": "Moldura do celular."
+      },
+      {
+        "name": "radius-device-screen",
+        "value": "34px",
+        "usage": "Tela dentro da moldura."
+      }
     ]
   },
   "size": {
     "tokens": [
-      {"name": "container", "value": "1120px", "usage": "Largura máxima do conteúdo da landing."},
-      {"name": "prose", "value": "36rem", "usage": "Largura máxima de texto corrido."},
-      {"name": "device-w", "value": "300px", "usage": "Largura do celular nos mocks."},
-      {"name": "device-h", "value": "600px", "usage": "Altura fixa do celular no hero (sem salto de layout)."},
-      {"name": "device-bezel", "value": "10px", "usage": "Espessura da moldura do celular."}
+      {
+        "name": "container",
+        "value": "1120px",
+        "usage": "Largura máxima do conteúdo da landing."
+      },
+      {
+        "name": "prose",
+        "value": "36rem",
+        "usage": "Largura máxima de texto corrido."
+      },
+      {
+        "name": "device-w",
+        "value": "300px",
+        "usage": "Largura do celular nos mocks."
+      },
+      {
+        "name": "device-h",
+        "value": "600px",
+        "usage": "Altura fixa do celular no hero (sem salto de layout)."
+      },
+      {
+        "name": "device-bezel",
+        "value": "10px",
+        "usage": "Espessura da moldura do celular."
+      }
     ]
   },
   "breakpoint": {
     "tokens": [
-      {"name": "md", "value": "48rem", "usage": "Tablet: 2 colunas em grades."},
-      {"name": "lg", "value": "64rem", "usage": "Desktop: hero em 2 colunas."}
+      {
+        "name": "md",
+        "value": "48rem",
+        "usage": "Tablet: 2 colunas em grades."
+      },
+      {
+        "name": "lg",
+        "value": "64rem",
+        "usage": "Desktop: hero em 2 colunas."
+      }
     ]
   },
   "motion": {
     "note": "Durações e curvas aprovadas para a landing. Anime só transform e opacity. Com movimento reduzido, mostre o estado final.",
     "tokens": [
-      {"name": "duration-fast", "value": "150ms", "usage": "Hover e troca de cor."},
-      {"name": "duration-base", "value": "200ms", "usage": "Press, alternador de tema, abrir pergunta."},
-      {"name": "duration-enter", "value": "300ms", "usage": "Balão de conversa e cartão da agenda entrando."},
-      {"name": "duration-reveal", "value": "400ms", "usage": "Reveal ao rolar."},
-      {"name": "ease-out", "value": "cubic-bezier(0.22, 1, 0.36, 1)", "usage": "Entradas e reveal."},
-      {"name": "ease-in-out", "value": "cubic-bezier(0.65, 0, 0.35, 1)", "usage": "Deslocamentos na tela (mesma curva da Assinatura da identidade)."},
-      {"name": "distance-reveal", "value": "16px", "usage": "Deslocamento do reveal ao rolar."},
-      {"name": "distance-bubble", "value": "8px", "usage": "Deslocamento do balão entrando."},
-      {"name": "scale-press", "value": "0.98", "usage": "Escala ao pressionar botão."},
-      {"name": "stagger", "value": "80ms", "usage": "Intervalo entre itens de um grupo (no máximo 4)."}
+      {
+        "name": "duration-fast",
+        "value": "150ms",
+        "usage": "Hover e troca de cor."
+      },
+      {
+        "name": "duration-base",
+        "value": "200ms",
+        "usage": "Press, alternador de tema, abrir pergunta."
+      },
+      {
+        "name": "duration-enter",
+        "value": "300ms",
+        "usage": "Balão de conversa e cartão da agenda entrando."
+      },
+      {
+        "name": "duration-reveal",
+        "value": "400ms",
+        "usage": "Reveal ao rolar."
+      },
+      {
+        "name": "ease-out",
+        "value": "cubic-bezier(0.22, 1, 0.36, 1)",
+        "usage": "Entradas e reveal."
+      },
+      {
+        "name": "ease-in-out",
+        "value": "cubic-bezier(0.65, 0, 0.35, 1)",
+        "usage": "Deslocamentos na tela (mesma curva da Assinatura da identidade)."
+      },
+      {
+        "name": "distance-reveal",
+        "value": "16px",
+        "usage": "Deslocamento do reveal ao rolar."
+      },
+      {
+        "name": "distance-bubble",
+        "value": "8px",
+        "usage": "Deslocamento do balão entrando."
+      },
+      {
+        "name": "scale-press",
+        "value": "0.98",
+        "usage": "Escala ao pressionar botão."
+      },
+      {
+        "name": "stagger",
+        "value": "80ms",
+        "usage": "Intervalo entre itens de um grupo (no máximo 4)."
+      }
+    ]
+  },
+  "shadow": {
+    "note": "Exceção da landing: sombra de elevação nos cartões de marketing. Não usar no painel.",
+    "tokens": [
+      {
+        "name": "shadow-float",
+        "value": {
+          "light": "0 30px 60px -24px rgba(60, 36, 18, 0.35), 0 8px 20px -8px rgba(60, 36, 18, 0.18)",
+          "dark": "0 30px 70px -20px rgba(0, 0, 0, 0.7), 0 8px 20px -8px rgba(0, 0, 0, 0.5)"
+        },
+        "usage": "Mock de celular, agenda, cartões e chips da landing."
+      }
     ]
   }
 }

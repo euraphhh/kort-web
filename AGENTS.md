@@ -32,7 +32,9 @@ Escopo atual: **somente a landing page** (marketing). Painel, agente de WhatsApp
 - O nome é sempre **kort**, minúsculo, inclusive no começo de frase.
 - Logo só pelos SVGs oficiais em `public/brand/` (wordmark, wordmark-creme, ícone, ícone-escuro). Não redesenhe, não recolora, sem sombra, gradiente ou contorno. Wordmark com no mínimo 64px de largura; abaixo disso, o ícone (mínimo 24px). Respiro em volta = altura do "o".
 - `accent` só para ação principal, link, item ativo e foco. Uma ação primária por seção. Acento nunca indica estado.
-- Separe por borda, não por sombra. `shadow-overlay` só em camadas sobrepostas. Use os raios do design system; nada quadrado.
+- No painel, separe por borda, não por sombra: `shadow-overlay` só em camadas sobrepostas. Use os raios do design system; nada quadrado.
+- **Exceção da landing (decidida em out/2026):** pode usar sombra de elevação (`shadow-float`), gradiente, blur e brilho que segue o mouse, sempre via tokens. Nada disso vai para o painel.
+- **Exceção da landing:** Instrument Serif itálico (`--font-serif`) só nas palavras de destaque dos títulos. O resto é Manrope. Ainda não está no design system: registrar lá.
 - Sem emoji na interface. Ícones de traço arredondado em `currentColor` (sugestão: Lucide; avise antes de adicionar o pacote).
 - Alvo de toque de pelo menos 44px, texto de pelo menos 12px, anel de foco de 2px em `focus-ring` com 2px de afastamento.
 - Estado nunca só por cor: sempre palavra e ícone.
@@ -51,7 +53,7 @@ Escopo atual: **somente a landing page** (marketing). Painel, agente de WhatsApp
 - Anime só `transform` e `opacity`, com propriedades explícitas. Nunca `transition: all`.
 - Respeite `prefers-reduced-motion` em tudo (`MotionConfig reducedMotion="user"`): sem deslocamento, mostrando o estado final.
 - Reveal ao rolar (provisório, até existirem tokens de movimento no design system): `whileInView`, `viewport={{ once: true }}`, fade + 16px de deslocamento, ~400ms, ease-out. Hover e press de botão: 150–200ms.
-- Hero: o movimento principal é a conversa de WhatsApp se montando (cliente pede, assistente responde, horário confirma). Roda uma vez, com botão para repetir. Sem loop infinito. O resto da página é discreto.
+- Hero: o movimento principal é a conversa de WhatsApp se montando (cliente pede, assistente responde, horário confirma). **Exceção da landing:** a conversa, a faixa de frases e o balão rodam em loop, como no esboço aprovado. Com `prefers-reduced-motion` tudo para no estado final.
 - O conteúdo acima da dobra nunca começa invisível (LCP): o texto do hero tem que estar legível sem JS e com movimento reduzido.
 - O design system ainda não tem tokens de movimento: proponha durações e easing, espere aprovação e só então espalhe pelo código (`src/lib/motion.ts`).
 
@@ -87,3 +89,13 @@ Escopo atual: **somente a landing page** (marketing). Painel, agente de WhatsApp
 - Tokens de movimento.
 - Tamanho do `display` no hero desktop (o design system tem 40px).
 - "kort for beauty" é variação futura: não implemente.
+
+<!-- BEGIN:nextjs-agent-rules -->
+
+## This is NOT the Next.js you know
+
+This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
+
+This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
+
+<!-- END:nextjs-agent-rules -->

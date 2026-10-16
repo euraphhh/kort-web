@@ -48,6 +48,12 @@
   --color-chat-bubble-client: var(--chat-bubble-client);
   --color-chat-bubble-assistant: var(--chat-bubble-assistant);
   --color-device-frame: var(--device-frame);
+  --color-ok: var(--ok);
+  --color-motif: var(--motif);
+  --color-cta-bg: var(--cta-bg);
+  --color-cta-ink: var(--cta-ink);
+  --color-foot-bg: var(--foot-bg);
+  --color-foot-ink: var(--foot-ink);
   --spacing-1: var(--space-1);
   --spacing-2: var(--space-2);
   --spacing-3: var(--space-3);
@@ -112,6 +118,9 @@
 @utility shadow-overlay {
   box-shadow: var(--shadow-overlay);
 }
+@utility shadow-float {
+  box-shadow: var(--shadow-float);
+}
 
 :root {
   color-scheme: light;
@@ -119,6 +128,9 @@
   --brand-camurca: #C9A27E;
   --brand-tinta: #1C1917;
   --brand-creme: #F7F4EF;
+  --cta-bg: #7A4E2D;
+  --cta-ink: #F7F4EF;
+  --foot-ink: #F7F4EF;
   --space-1: 4px;
   --space-2: 8px;
   --space-3: 12px;
@@ -204,7 +216,11 @@
   --chat-bubble-client: #F0E6DC;
   --chat-bubble-assistant: #FFFFFF;
   --device-frame: #1C1917;
+  --ok: #3F7D58;
+  --motif: #C9A27E;
+  --foot-bg: #1C1917;
   --shadow-overlay: 0 8px 24px rgba(28, 25, 23, 0.12);
+  --shadow-float: 0 30px 60px -24px rgba(60, 36, 18, 0.35), 0 8px 20px -8px rgba(60, 36, 18, 0.18);
 }
 
 /* Sem JS (next-themes ainda não marcou o <html>): segue o sistema. */
@@ -232,7 +248,11 @@
     --chat-bubble-client: #2E241C;
     --chat-bubble-assistant: #1C1816;
     --device-frame: #352E29;
+    --ok: #7FC19A;
+    --motif: #7A4E2D;
+    --foot-bg: #0D0B09;
     --shadow-overlay: 0 8px 24px rgba(0, 0, 0, 0.5);
+    --shadow-float: 0 30px 70px -20px rgba(0, 0, 0, 0.7), 0 8px 20px -8px rgba(0, 0, 0, 0.5);
   }
 }
 
@@ -259,5 +279,9 @@
   --chat-bubble-client: #2E241C;
   --chat-bubble-assistant: #1C1816;
   --device-frame: #352E29;
+  --ok: #7FC19A;
+  --motif: #7A4E2D;
+  --foot-bg: #0D0B09;
   --shadow-overlay: 0 8px 24px rgba(0, 0, 0, 0.5);
+  --shadow-float: 0 30px 70px -20px rgba(0, 0, 0, 0.7), 0 8px 20px -8px rgba(0, 0, 0, 0.5);
 }

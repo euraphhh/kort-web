@@ -1,17 +1,11 @@
 "use client";
-
-import { LazyMotion, MotionConfig, domAnimation } from "motion/react";
+import { MotionConfig } from "motion/react";
 import { ThemeProvider } from "next-themes";
-import type { ReactNode } from "react";
 
-export function Providers({ children }: { children: ReactNode }) {
+export default function Providers({ children }: { children: React.ReactNode }) {
   return (
-    <ThemeProvider attribute="data-theme" defaultTheme="system" enableSystem disableTransitionOnChange>
-      <MotionConfig reducedMotion="user">
-        <LazyMotion features={domAnimation} strict>
-          {children}
-        </LazyMotion>
-      </MotionConfig>
+    <ThemeProvider attribute="data-theme" defaultTheme="system" enableSystem storageKey="kort-theme">
+      <MotionConfig reducedMotion="user">{children}</MotionConfig>
     </ThemeProvider>
   );
 }

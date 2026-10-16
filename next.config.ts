@@ -1,10 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  /* config options here */
   cacheComponents: true,
   partialPrefetching: true,
-  // O AGENTS.md é do time: o `next dev` não deve reescrevê-lo.
-  agentRules: false,
   turbopack: {
     rules: {
       "*.css": {

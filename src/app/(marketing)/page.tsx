@@ -1,25 +1,32 @@
-import { Header } from "@/components/marketing/header";
-import { Hero } from "@/components/marketing/hero";
-import { Assistant, Faq, FinalCta, Footer, HowItWorks, Pain, Panel } from "@/components/marketing/sections";
+import Agenda from "@/components/marketing/agenda";
+import ChatDemo from "@/components/marketing/chat-demo";
+import { Cta, Footer } from "@/components/marketing/closing";
+import Features from "@/components/marketing/features";
+import { Suspense } from "react";
+import HeroSwitch from "@/components/marketing/hero-switch";
+import Marquee from "@/components/marketing/marquee";
+import Nav from "@/components/marketing/nav";
+import { PatternBand } from "@/components/marketing/patterns";
+import Moment from "@/components/marketing/photos";
+import Stages from "@/components/marketing/stages";
 
-export default function Home() {
+export default function Page() {
   return (
     <>
-      <a
-        href="#conteudo"
-        className="sr-only rounded-md bg-surface-1 px-4 py-3 text-body-strong focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-20"
-      >
-        Pular para o conteúdo
-      </a>
-      <Header />
-      <main id="conteudo">
-        <Hero />
-        <Pain />
-        <HowItWorks />
-        <Assistant />
-        <Panel />
-        <Faq />
-        <FinalCta />
+      <Nav />
+      <main>
+        <Suspense fallback={<section className="hero hero-split" />}>
+          <HeroSwitch />
+        </Suspense>
+        <Marquee />
+        <ChatDemo />
+        <PatternBand kind="conversa" />
+        <Agenda />
+        <PatternBand kind="agenda" />
+        <Stages />
+        <Moment />
+        <Features />
+        <Cta />
       </main>
       <Footer />
     </>

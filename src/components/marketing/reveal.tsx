@@ -1,21 +1,56 @@
 "use client";
+import { motion } from "motion/react";
 
-import { m } from "motion/react";
-import type { ReactNode } from "react";
-import { reveal, staggerDelay } from "@/lib/motion";
-
-/** Reveal discreto ao rolar. Com movimento reduzido ou sem JS, o conteúdo já aparece pronto. */
-export function Reveal({ children, index = 0, className }: { children: ReactNode; index?: number; className?: string }) {
+export function Reveal({
+  children,
+  delay = 0,
+  y = 28,
+  className,
+}: {
+  children: React.ReactNode;
+  delay?: number;
+  y?: number;
+  className?: string;
+}) {
   return (
-    <m.div
-      data-motion-final
+    <motion.div
       className={className}
-      initial={reveal.initial}
-      whileInView={reveal.whileInView}
-      viewport={reveal.viewport}
-      transition={{ ...reveal.transition, delay: staggerDelay(index) }}
+      initial={{ opacity: 0, y }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.25 }}
+      transition={{ duration: 0.8, delay, ease: [0.22, 1, 0.36, 1] }}
     >
       {children}
-    </m.div>
+    </motion.div>
+  );
+}
+
+/** Linha de título com máscara: o texto sobe de dentro de uma janela. */
+export function MaskLine({
+  children,
+  delay = 0,
+  className,
+  inView = false,
+}: {
+  children: React.ReactNode;
+  delay?: number;
+  className?: string;
+  inView?: boolean;
+}) {
+  const variants = {
+    hidden: { y: "112%" },
+    show: { y: 0, transition: { duration: 0.95, delay, ease: [0.22, 1, 0.36, 1] as const } },
+  };
+  // O gatilho fica no invólucro (visível); o texto, dentro da janela com overflow, só se move.
+  return (
+    <motion.span
+      className={`mask ${className ?? ""}`}
+      initial="hidden"
+      {...(inView ? { whileInView: "show", viewport: { once: true, amount: 0.8 } } : { animate: "show" })}
+    >
+      <motion.span className="mask-in" variants={variants}>
+        {children}
+      </motion.span>
+    </motion.span>
   );
 }
