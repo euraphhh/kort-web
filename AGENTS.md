@@ -1,6 +1,6 @@
 # AGENTS.md — kort
 
-Escopo atual: **somente a landing page** (marketing). Painel, agente de WhatsApp e backend entram depois: não crie nem mexa neles.
+Escopo atual: a landing está no ar. Painel, API e agente de WhatsApp seguem as specs do Notion (Specs), mas **só se constrói o que estiver em "Fazendo" no Trello, um card por vez**. Sem card em andamento, não crie nem mexa nessas áreas.
 
 ## O produto
 
@@ -10,11 +10,24 @@ Escopo atual: **somente a landing page** (marketing). Painel, agente de WhatsApp
 
 ## Stack e estrutura
 
-- Next.js (App Router) + React + TypeScript + Tailwind v4. A landing vive no mesmo repo do app.
-- Landing em `src/app/(marketing)/` (rota `/`, layout próprio). Componentes em `src/components/marketing/`. O painel ficará em outro route group: não compartilhe layout com ele.
+Arquitetura completa e motivos: Notion › Decisões | SaaS › "Arquitetura de Software e decisões de Stack". Aqui fica o resumo que muda o código.
+
+- **Repos:** kort-web (landing, painel, API, webhook do WhatsApp e agente; dono do schema) e, depois, kort-app (mobile, fala só com a API REST do kort-web, nunca com o banco).
+- **Stack:** TypeScript, Next.js (App Router) na Vercel, Tailwind v4, Motion. Postgres no Supabase (Auth, RLS), migrations em SQL puro com Supabase CLI e tipos gerados. Anthropic SDK direto para o agente. Fila durável gerenciada para o trabalho do agente (a escolha entre Vercel Queues/Workflow e QStash está em aberto), Upstash Redis para rate limit e idempotência, Resend para e-mail, Sentry para erros, Vercel Analytics sem cookie. WhatsApp pela Cloud API da Meta direto, atrás de uma interface que permita trocar por BSP.
+- **Pastas:**
+  - `src/app/(marketing)/`: landing (rota `/`, layout próprio). Componentes em `src/components/marketing/`.
+  - `src/app/(app)/`: painel (layout próprio, nunca compartilha layout com marketing). Em produção, `app.<domínio>`.
+  - `src/app/api/`: `/api/v1` (REST com Zod e OpenAPI) e `/api/whatsapp` (webhook).
+  - `src/domain/`: agenda, disponibilidade, regras e dinheiro, em TypeScript puro e testado. Painel e tools do agente chamam esta camada. UI e agente nunca reimplementam regra de agenda.
+  - `src/agent/`: prompt, tools e loop. Tools em inglês (`check_availability`, `create_appointment`...).
+  - `supabase/migrations/`: schema, RLS e exclusion constraint. `docs/specs/`: espelho enxuto das specs (link, critérios de aceite, status).
+- **Regras que não se quebra:** o LLM nunca escreve no banco (só chama tools determinísticas); só confirma depois de gravar; sem overbooking, garantido pelo Postgres; toda tabela tem `barbershop_id` e o servidor injeta o valor a partir do número do WhatsApp, nunca o modelo; UTC no banco, America/Sao_Paulo na tela, dinheiro em centavos; o webhook valida a assinatura da Meta, deduplica por ID, responde 200 e enfileira; schemas Zod únicos para validação, formulários, OpenAPI e tools; dado pessoal em log só com acesso restrito e retenção de 90 dias.
+- **Ambientes:** local, staging (`dev`, Supabase próprio e número de teste da Meta) e produção (`main`). Variáveis em `.env.example`; segredos só na Vercel e em `.env` local, nunca no repo.
+- **Docker:** `docker compose up --build web` sobe a imagem de produção (standalone) com Redis, para testar cache e rotas como em produção; `web-dev` dá hot reload. O Supabase local sobe à parte com `npx supabase start`.
 - Se o repo já tiver outra estrutura, siga a existente e avise.
 - Server Components por padrão. `'use client'` só nas folhas que animam ou têm estado.
 - `next/font/google` para Manrope (400, 500, 600, 700, `display: swap`), `next/image` para imagens, `<html lang="pt-BR">`.
+- Idiomas: interface e prompts em pt-BR; código, comentários, commits e nomes de tools em inglês.
 
 ## Fonte da verdade visual
 
@@ -69,7 +82,8 @@ Escopo atual: **somente a landing page** (marketing). Painel, agente de WhatsApp
 
 - Tarefa grande: proponha o plano (seções, componentes, o que falta no design system) e espere aprovação antes de codar.
 - Se o design system não cobre algo (token, componente, estado), proponha a adição e avise. Não improvise em silêncio e não crie valor solto.
-- Mudanças e commits pequenos. Fique dentro de `(marketing)`, `components/marketing`, `styles`, `public/brand`, `design` e `scripts`; fora disso, avise.
+- Mudanças e commits pequenos, convencionais, em inglês. Branches curtas (`feat/...`, `fix/...`) com PR para `dev` e, para publicar, PR de `dev` para `main`; CI verde obrigatório. Cada PR cita a spec do Notion.
+- Fique dentro da área do card em andamento (por exemplo `(marketing)`, `components/marketing`, `styles`, `public/brand`, `design`, `scripts` na landing); fora dela, avise.
 - Dependência nova: avise e justifique antes de instalar. Não leia nem altere `.env` ou segredos.
 
 ## Definição de pronto

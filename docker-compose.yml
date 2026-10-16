@@ -1,0 +1,57 @@
+# Ambiente local completo. O Supabase local sobe à parte (`npx supabase start`, que usa o próprio Docker).
+#   docker compose up --build web        web como em produção (standalone) + redis
+#   docker compose up --build web-dev    web com hot reload, em vez da imagem de produção
+# (suba um dos dois: ambos usam a porta 3000)
+# Variáveis: copie .env.example para .env.
+
+services:
+  web:
+    build:
+      context: .
+      target: runner
+    ports:
+      - "3000:3000"
+    env_file: .env
+    environment:
+      UPSTASH_REDIS_REST_URL: http://redis-http:80
+      NEXT_PUBLIC_SUPABASE_URL: ${NEXT_PUBLIC_SUPABASE_URL:-http://host.docker.internal:54321}
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      - redis-http
+
+  web-dev:
+    build:
+      context: .
+      target: dev
+    ports:
+      - "3000:3000"
+    env_file: .env
+    environment:
+      UPSTASH_REDIS_REST_URL: http://redis-http:80
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/.next
+    depends_on:
+      - redis-http
+    profiles: ["dev"]
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+
+  # API REST compatível com o Upstash, para o mesmo cliente funcionar em local e em produção.
+  redis-http:
+    image: hiett/serverless-redis-http:latest
+    ports:
+      - "8079:80"
+    environment:
+      SRH_MODE: env
+      SRH_TOKEN: ${UPSTASH_REDIS_REST_TOKEN:-kort-local-token}
+      SRH_CONNECTION_STRING: redis://redis:6379
+    depends_on:
+      - redis
