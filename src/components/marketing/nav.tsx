@@ -15,9 +15,6 @@ export default function Nav() {
   return (
     <motion.header
       className={`nav ${scrolled ? "is-scrolled" : ""}`}
-      initial={{ y: -80, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
     >
       <div className="nav-inner">
         <a href="#top" aria-label="kort — início" className="nav-logo">

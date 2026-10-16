@@ -2,8 +2,7 @@ import Agenda from "@/components/marketing/agenda";
 import ChatDemo from "@/components/marketing/chat-demo";
 import { Cta, Footer } from "@/components/marketing/closing";
 import Features from "@/components/marketing/features";
-import { Suspense } from "react";
-import HeroSwitch from "@/components/marketing/hero-switch";
+import Hero from "@/components/marketing/hero";
 import Marquee from "@/components/marketing/marquee";
 import Nav from "@/components/marketing/nav";
 import { PatternBand } from "@/components/marketing/patterns";
@@ -15,9 +14,7 @@ export default function Page() {
     <>
       <Nav />
       <main>
-        <Suspense fallback={<section className="hero hero-split" />}>
-          <HeroSwitch />
-        </Suspense>
+        <Hero />
         <Marquee />
         <ChatDemo />
         <PatternBand kind="conversa" />
