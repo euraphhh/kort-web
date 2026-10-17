@@ -268,7 +268,13 @@ em { font-family: var(--serif); font-style: italic; font-weight: 400; color: var
    (o hero corta o excesso). O celular fica sobre a parte do balão mais próxima do texto. */
 .hero-split .hero-bubble { --size: max(150svh, 62vw); width: var(--size); left: 0; right: auto; top: 50%; margin-top: calc(var(--size) / -2); }
 .hero-split .hero-phone { left: 60%; top: 50%; margin-left: calc(min(360px, 82%) / -2); }
-.hero-split .chip-c { bottom: 8%; left: -24%; }
+.hero-split .hero-stage { transform: translateY(-4.5rem); }
+.hero-split .chip-a { top: 14%; right: 6%; }
+.hero-split .chip-b { top: 30%; left: 6%; }
+.hero-split .chip-c { bottom: 14%; left: -8%; }
+/* sem sombra no hero: a separação é por borda */
+.hero .chat, .hero .chip-inner { box-shadow: none; border: 1px solid var(--line); }
+.hero .btn:not(.btn-ghost), .hero .btn:not(.btn-ghost):hover { box-shadow: none; }
 @media (max-width: 960px) {
   .hero-split .hero-bubble { --size: 130vw; left: 50%; margin-left: calc(var(--size) / -2); margin-top: calc(var(--size) / -2); }
   .hero-split .hero-phone { left: 50%; }
