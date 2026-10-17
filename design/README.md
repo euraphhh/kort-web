@@ -69,6 +69,8 @@ Ações destrutivas e erros usam `danger`.
 
 Uma família só: **Manrope** (Google Fonts, pesos 400, 500, 600 e 700). Os terminais arredondados dela conversam com o traço do logo.
 
+**Exceção da landing:** **Instrument Serif** itálico (token `font-serif`, em `tokens.landing.json`), só nas palavras de destaque dos títulos, como "atende." no hero. Nunca em corpo de texto, interface ou painel.
+
 - Título de tela em `title`, um por tela; título de cartão em `heading`.
 - Texto corrido em `body`; nomes de serviço, valores e rótulos de botão em `body-strong`.
 - Horários da agenda em `time`, com números tabulares para a coluna alinhar.

@@ -74,6 +74,7 @@
   --container-container: var(--container);
   --container-prose: var(--prose);
   --font-sans: var(--font-manrope), var(--font-family-sans);
+  --font-serif: var(--font-instrument-serif), var(--font-family-serif);
   --text-*: initial;
   --text-display: var(--type-display-font-size);
   --text-display--line-height: var(--type-display-line-height);
@@ -158,6 +159,7 @@
   --scale-press: 0.98;
   --stagger: 80ms;
   --font-family-sans: Manrope, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-family-serif: "Instrument Serif", Georgia, serif;
   --type-display-font-size: 40px;
   --type-display-line-height: 44px;
   --type-display-font-weight: 700;

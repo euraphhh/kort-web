@@ -47,7 +47,7 @@ Arquitetura completa e motivos: Notion › Decisões | SaaS › "Arquitetura de 
 - `accent` só para ação principal, link, item ativo e foco. Uma ação primária por seção. Acento nunca indica estado.
 - No painel, separe por borda, não por sombra: `shadow-overlay` só em camadas sobrepostas. Use os raios do design system; nada quadrado.
 - **Exceção da landing (decidida em out/2026):** pode usar sombra de elevação (`shadow-float`), gradiente, blur e brilho que segue o mouse, sempre via tokens. Nada disso vai para o painel.
-- **Exceção da landing:** Instrument Serif itálico (`--font-serif`) só nas palavras de destaque dos títulos. O resto é Manrope. Ainda não está no design system: registrar lá.
+- **Exceção da landing:** Instrument Serif itálico (token `font-serif`, registrado em `design/tokens.landing.json` e no `design/README.md`) só nas palavras de destaque dos títulos. O resto é Manrope.
 - Sem emoji na interface. Ícones de traço arredondado em `currentColor` (sugestão: Lucide; avise antes de adicionar o pacote).
 - Alvo de toque de pelo menos 44px, texto de pelo menos 12px, anel de foco de 2px em `focus-ring` com 2px de afastamento.
 - Estado nunca só por cor: sempre palavra e ícone.
