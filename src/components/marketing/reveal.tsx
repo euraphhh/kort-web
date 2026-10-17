@@ -37,6 +37,15 @@ export function MaskLine({
   className?: string;
   inView?: boolean;
 }) {
+  if (!inView) {
+    return (
+      <span className={`mask ${className ?? ""}`}>
+        <span className="mask-in mask-in-css" style={{ ["--d" as string]: `${delay}s` }}>
+          {children}
+        </span>
+      </span>
+    );
+  }
   const variants = {
     hidden: { y: "112%" },
     show: { y: 0, transition: { duration: 0.95, delay, ease: [0.22, 1, 0.36, 1] as const } },
@@ -46,7 +55,8 @@ export function MaskLine({
     <motion.span
       className={`mask ${className ?? ""}`}
       initial="hidden"
-      {...(inView ? { whileInView: "show", viewport: { once: true, amount: 0.8 } } : { animate: "show" })}
+      whileInView="show"
+      viewport={{ once: true, amount: 0.8 }}
     >
       <motion.span className="mask-in" variants={variants}>
         {children}

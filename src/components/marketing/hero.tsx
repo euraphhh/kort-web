@@ -25,9 +25,7 @@ function BubbleShape() {
   );
 }
 
-export type HeroVariant = "split" | "center";
-
-export default function Hero({ variant = "split" }: { variant?: HeroVariant }) {
+export default function Hero() {
   const reduce = useReducedMotion();
   const [msgs, setMsgs] = useState<Msg[]>([]);
   const [typing, setTyping] = useState(false);
@@ -78,7 +76,7 @@ export default function Hero({ variant = "split" }: { variant?: HeroVariant }) {
   }, [reduce]);
 
   return (
-    <section id="top" ref={sectionRef} className={`hero hero-${variant}`}>
+    <section id="top" ref={sectionRef} className="hero hero-split">
       <div className="hero-grid">
         <div className="hero-copy">
           <h1 className="hero-title">
@@ -88,21 +86,11 @@ export default function Hero({ variant = "split" }: { variant?: HeroVariant }) {
               <em>atende.</em>
             </MaskLine>
           </h1>
-          <motion.p
-            className="hero-sub"
-            initial={{ opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, delay: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          >
+          <p className="hero-sub fade-up" style={{ ["--d" as string]: "0.7s" }}>
             Agenda por profissional, WhatsApp oficial da sua barbearia e um assistente de IA que marca horário pelo
             WhatsApp, a qualquer hora.
-          </motion.p>
-          <motion.div
-            className="hero-actions"
-            initial={{ opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, delay: 0.85, ease: [0.22, 1, 0.36, 1] }}
-          >
+          </p>
+          <div className="hero-actions fade-up" style={{ ["--d" as string]: "0.85s" }}>
             <a className="btn" href={FORM_URL} target="_blank" rel="noopener noreferrer">
                 Participar da pesquisa
                 <span className="btn-arrow" aria-hidden="true">→</span>
@@ -110,15 +98,10 @@ export default function Hero({ variant = "split" }: { variant?: HeroVariant }) {
             <a className="btn btn-ghost" href="#assistente">
               Testar o assistente
             </a>
-          </motion.div>
-          <motion.p
-            className="hero-note"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 1.2 }}
-          >
+          </div>
+          <p className="hero-note fade-up" style={{ ["--d" as string]: "1.2s" }}>
             O kort está sendo construído junto com barbeiros. Ainda não está à venda.
-          </motion.p>
+          </p>
         </div>
 
         <div className="hero-stage">
