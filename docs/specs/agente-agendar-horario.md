@@ -26,6 +26,14 @@ O cliente pede um serviço e sai da conversa com o horário gravado, sem app e s
 - Sem overbooking: o Postgres impede com exclusion constraint por profissional. A tool trata o erro 23P01 e devolve "horário ocupado" ao modelo. Reserva temporária enquanto o cliente pensa fica fora do MVP.
 - Cada agendamento tem status: agendado, concluído, cancelado, faltou.
 
+## Decisões de implementação (19/out/2026)
+
+- Os horários oferecidos ficam na grade de 30 minutos (09h00, 09h30...). O serviço ocupa a duração real que o dono cadastrou, e o serviço inteiro precisa caber numa janela livre (não atravessa o almoço).
+- Alternativas: 3, as mais próximas do pedido (antes ou depois), no mesmo dia e no dia seguinte.
+- "Sem preferência" é uma função determinística do domínio (`pickProfessional`), não uma decisão do modelo: prefere quem já atendeu o cliente, depois quem está menos ocupado no dia, depois a ordem de cadastro.
+- Janela máxima de agendamento: configurável pelo dono, padrão 30 dias (`barbershop.max_advance_days`, campo a criar no banco).
+- A disponibilidade vem de `src/domain/availability.ts`; o Postgres continua sendo a palavra final (exclusion constraint).
+
 ## Critérios de aceite
 
 - [ ] Pedido completo e horário livre: agenda e confirma depois de gravar.

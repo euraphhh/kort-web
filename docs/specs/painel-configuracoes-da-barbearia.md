@@ -14,7 +14,7 @@ Reunir os dados e as regras da barbearia que o agente e a agenda consultam.
 
 - **Dados:** nome da barbearia, endereço e DDD padrão (obrigatório; usado na importação de telefones sem DDD).
 - **Horário de funcionamento:** por dia da semana, com mais de um intervalo no mesmo dia (almoço fecha, volta à tarde). O horário dos profissionais fica dentro deste.
-- **Regras de agenda:** antecedência mínima para agendar (padrão 30 min, pode ser 0) e limite para cancelar ou remarcar (padrão até 2h antes).
+- **Regras de agenda:** antecedência mínima para agendar (padrão 30 min, pode ser 0) e limite para cancelar ou remarcar (padrão até 2h antes) e janela máxima de agendamento, quantos dias à frente o cliente pode marcar (padrão 30 dias; decidido em 19/out/2026, campo `max_advance_days` a criar no banco).
 - Fuso fixo America/Sao_Paulo.
 - Sem cobrança, plano ou pagamento no MVP.
 
