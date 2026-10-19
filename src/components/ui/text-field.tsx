@@ -1,4 +1,4 @@
-import type { ComponentProps } from "react";
+import type { ComponentProps, ReactNode } from "react";
 import { AlertIcon } from "./icons";
 
 // TextField from the design system (design/components/TextField): the label is always visible
@@ -12,9 +12,11 @@ export type TextFieldProps = Omit<ComponentProps<"input">, "id" | "name"> & {
   label: string;
   hint?: string;
   error?: string;
+  /** Something that sits inside the field on the right (for example a show/hide button). */
+  trailing?: ReactNode;
 };
 
-export function TextField({ name, label, hint, error, className, ...input }: TextFieldProps) {
+export function TextField({ name, label, hint, error, trailing, className, ...input }: TextFieldProps) {
   const messageId = `${name}-message`;
   const message = error ?? hint;
 
@@ -23,21 +25,25 @@ export function TextField({ name, label, hint, error, className, ...input }: Tex
       <label htmlFor={name} className="text-caption font-semibold text-text">
         {label}
       </label>
-      <input
-        id={name}
-        name={name}
-        aria-invalid={error ? true : undefined}
-        aria-describedby={message ? messageId : undefined}
-        className={[
-          "min-h-target-min w-full rounded-md border-[1.5px] bg-surface-1 px-(--space-4) text-body text-text placeholder:text-text-muted",
-          error ? "border-danger" : "border-border-control",
-          "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus-ring",
-          className,
-        ]
-          .filter(Boolean)
-          .join(" ")}
-        {...input}
-      />
+      <div className="relative">
+        <input
+          id={name}
+          name={name}
+          aria-invalid={error ? true : undefined}
+          aria-describedby={message ? messageId : undefined}
+          className={[
+            "min-h-target-min w-full rounded-md border-[1.5px] bg-surface-1 px-(--space-4) text-body text-text placeholder:text-text-muted",
+            trailing && "pr-(--space-9)",
+            error ? "border-danger" : "border-border-control",
+            "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus-ring",
+            className,
+          ]
+            .filter(Boolean)
+            .join(" ")}
+          {...input}
+        />
+        {trailing && <div className="absolute inset-y-0 right-0 flex items-center">{trailing}</div>}
+      </div>
       {message && (
         <p
           id={messageId}
