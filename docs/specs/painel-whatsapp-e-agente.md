@@ -29,4 +29,4 @@ Dar ao dono controle e visibilidade do agente: ligar ou desligar, ver se o Whats
 - [ ] **Esta tela vai crescer (observação de 19/out/2026):** a tela de configurações do agente precisa ser bem específica. Hoje a spec cobre só status, interruptor, handoffs e devolução. Falta especificar o que mais o dono configura (por exemplo, regras de agenda expostas, mensagens e lembretes) e o que fica fixo no MVP.
 
 - [x] **Decidido (19/out/2026):** com o agente desligado, os lembretes já programados continuam, porque pertencem ao agendamento. O dono atende as mensagens novas pelo próprio app. Pendente de refletir no Notion.
-- [ ] Quem é avisado e como quando a conexão do WhatsApp cai (não há push no MVP).
+- [x] **Decidido (19/out/2026):** quando a conexão do WhatsApp cai, o painel mostra uma faixa de erro (palavra e ícone) e o dono e o time recebem e-mail pelo Resend. Pendente de refletir no Notion.

@@ -28,5 +28,7 @@ Reduzir falta (no-show), que é a dor real da barbearia, sem virar spam.
 
 ## Em aberto
 
+- [x] **Decidido (19/out/2026):** agendamento criado com menos de 24h de antecedência não recebe o lembrete de 24h, só o de 1h. Pendente de refletir no Notion.
+
 - [ ] Custo por lembrete entra na conta de franquia e preço (ver visão geral).
 - [ ] Textos dos templates e aprovação na Meta.

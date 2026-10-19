@@ -12,7 +12,7 @@ Reunir os dados e as regras da barbearia que o agente e a agenda consultam.
 
 ## Comportamento
 
-- **Dados:** nome da barbearia, endereço e DDD padrão (usado na importação de telefones sem DDD).
+- **Dados:** nome da barbearia, endereço e DDD padrão (obrigatório; usado na importação de telefones sem DDD).
 - **Horário de funcionamento:** por dia da semana, com mais de um intervalo no mesmo dia (almoço fecha, volta à tarde). O horário dos profissionais fica dentro deste.
 - **Regras de agenda:** antecedência mínima para agendar (padrão 30 min, pode ser 0) e limite para cancelar ou remarcar (padrão até 2h antes).
 - Fuso fixo America/Sao_Paulo.

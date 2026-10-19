@@ -28,4 +28,4 @@ Dar ao dono um lugar para dar acesso ao barbeiro. A spec de Login diz que "quem 
 
 - [x] **Decidido (19/out/2026):** o convite expira e pode ser reenviado. Prazo de expiração: 24h.
 - [x] **Decidido (19/out/2026):** o barbeiro marca compareceu/faltou, bloqueia o próprio horário e cria agendamento manual na própria agenda. Não vê a lista de clientes.
-- [ ] Mais de um dono por barbearia?
+- [x] **Decidido (19/out/2026):** um único dono por barbearia no MVP. A troca de titularidade e a entrada de sócio são feitas manualmente pelo time.

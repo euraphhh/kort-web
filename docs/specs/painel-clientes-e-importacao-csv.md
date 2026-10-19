@@ -34,4 +34,4 @@ Manter a base de clientes da barbearia e trazer quem já é cliente, para o agen
 ## Em aberto
 
 - [ ] Procedimento de anonimização por pedido de eliminação (LGPD), manual pelo time no MVP.
-- [ ] DDD padrão: campo nas Configurações.
+- [x] **Decidido (19/out/2026):** o DDD padrão é um campo obrigatório nas Configurações da barbearia, usado na importação de telefones sem DDD. Pendente de refletir no Notion.
