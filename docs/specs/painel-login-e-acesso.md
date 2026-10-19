@@ -29,3 +29,4 @@ Dar ao dono (e, se quiser, ao barbeiro) acesso ao painel, isolado por barbearia.
 
 - [x] **Decidido (19/out/2026):** o barbeiro com login pode marcar compareceu ou faltou, bloquear o próprio horário e criar agendamento manual na própria agenda. Ver clientes **não** foi liberado. Pendente de refletir no Notion.
 - [x] **Decidido (19/out/2026):** o convite por link expira e o dono pode reenviar. Prazo de expiração: 24h. Pendente de refletir no Notion.
+- [x] **Decidido (19/out/2026):** menu do painel por papel. Dono: Agenda, A fechar, Clientes, Serviços, Equipe, Configurações e Perfil. Barbeiro: Agenda, A fechar e Perfil. Rotas em inglês: `/agenda`, `/to-close`, `/customers`, `/services`, `/team`, `/settings`, `/profile` (a agenda fica em `/agenda` porque a landing ocupa `/`). Pendente de refletir no Notion.
