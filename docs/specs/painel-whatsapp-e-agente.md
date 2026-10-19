@@ -26,5 +26,5 @@ Dar ao dono controle e visibilidade do agente: ligar ou desligar, ver se o Whats
 
 ## Em aberto
 
-- [ ] Com o agente desligado, o que acontece com lembretes já programados e com mensagens que o cliente envia? Proposta: lembretes continuam, porque pertencem ao agendamento, e o dono atende pelo próprio app.
+- [x] **Decidido (19/out/2026):** com o agente desligado, os lembretes já programados continuam, porque pertencem ao agendamento. O dono atende as mensagens novas pelo próprio app. Pendente de refletir no Notion.
 - [ ] Quem é avisado e como quando a conexão do WhatsApp cai (não há push no MVP).

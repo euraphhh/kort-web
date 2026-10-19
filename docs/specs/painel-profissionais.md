@@ -28,4 +28,4 @@ Cadastrar quem atende, quais serviços faz e quando trabalha, porque o agente s�
 
 ## Em aberto
 
-- [ ] Inativar profissional com agendamentos futuros: bloquear até remarcar ou cancelar (proposta) ou permitir e listar os afetados?
+- [x] **Decidido (19/out/2026):** inativar profissional com agendamentos futuros é permitido, e a tela lista os agendamentos afetados para o dono resolver. Pendente de refletir no Notion. Falta definir se o agente continua oferecendo remarcação desses horários.

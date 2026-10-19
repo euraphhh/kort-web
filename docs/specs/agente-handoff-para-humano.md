@@ -34,5 +34,5 @@ Passar a conversa para uma pessoa da barbearia sem o agente falar por cima dela.
 ## Em aberto
 
 - [ ] Como o dono é avisado: com coexistência a conversa aparece no app dele, mas é preciso testar se basta ou se ainda precisa de aviso.
-- [ ] Tempo de retomada automática.
+- [x] **Decidido (19/out/2026):** no MVP a retomada é só manual (botão no painel), sem retomada por tempo. Isso substitui "ou por tempo sem atividade" no Comportamento. Pendente de refletir no Notion.
 - [ ] Validar a coexistência com número real antes de fechar este desenho.

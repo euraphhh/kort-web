@@ -26,6 +26,6 @@ Dar ao dono um lugar para dar acesso ao barbeiro. A spec de Login diz que "quem 
 
 ## Em aberto
 
-- [ ] Convite expira? Pode reenviar? (herdado da spec de Login)
-- [ ] Permissões do barbeiro com login: ver clientes, marcar compareceu ou faltou, bloquear o próprio horário.
+- [x] **Decidido (19/out/2026):** o convite expira e pode ser reenviado. Falta definir o prazo.
+- [x] **Decidido (19/out/2026):** o barbeiro marca compareceu/faltou, bloqueia o próprio horário e cria agendamento manual na própria agenda. Não vê a lista de clientes.
 - [ ] Mais de um dono por barbearia?

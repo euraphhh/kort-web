@@ -31,4 +31,4 @@ Tom configurável por barbearia. Conversa com o dono. Cliente em mais de uma bar
 
 ## Em aberto
 
-- [ ] Nome e sobrenome ou só nome. Pedir mais dados no 1º contato aumenta o risco de desistência; revisar com dados reais.
+- [x] **Decidido (19/out/2026):** o agente pede só o nome no primeiro contato (menos atrito). Os critérios de aceite acima que dizem "nome e sobrenome" passam a valer para "nome". Revisar com dados reais. Pendente de refletir no Notion.

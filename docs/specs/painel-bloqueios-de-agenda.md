@@ -27,5 +27,5 @@ A spec da Agenda define a criação do bloqueio (profissional, dia, início, fim
 ## Em aberto
 
 - [ ] Bloqueio recorrente (todo dia no almoço) ou só pontual? A spec da Agenda diz "pontual"; recorrência tende a ser coberta pelo horário semanal do profissional.
-- [ ] O barbeiro com login pode bloquear o próprio horário? (pergunta aberta na spec de Login)
+- [x] **Decidido (19/out/2026):** o barbeiro com login pode bloquear o próprio horário, e só o próprio.
 - [ ] Marcar manualmente sobre um bloqueio: permitir com aviso (proposta da spec de Agendamento manual).

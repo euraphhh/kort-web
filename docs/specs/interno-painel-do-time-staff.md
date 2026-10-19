@@ -26,6 +26,6 @@ No MVP o time cria as barbearias, conecta o WhatsApp manualmente e investiga err
 
 ## Em aberto
 
-- [ ] Isso vira tela no MVP ou fica como script e SQL enquanto são poucos pilotos? É a decisão que mais muda o esforço.
+- [x] **Decidido (19/out/2026):** no MVP o painel do time fica como script e SQL (Supabase), não como tela. Vira tela quando os pilotos passarem de poucos. Pendente de refletir no Notion.
 - [ ] Como o `staff` "entra" numa barbearia para ajudar o dono (visualizar como).
 - [ ] Onde ficam as métricas de custo de modelo por barbearia.

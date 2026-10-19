@@ -27,5 +27,5 @@ Dar ao dono (e, se quiser, ao barbeiro) acesso ao painel, isolado por barbearia.
 
 ## Em aberto
 
-- [ ] Permissões do barbeiro com login: pode ver clientes? marcar compareceu ou faltou? bloquear o próprio horário?
-- [ ] Alcance do convite por link no MVP (expira? reenvio?).
+- [x] **Decidido (19/out/2026):** o barbeiro com login pode marcar compareceu ou faltou, bloquear o próprio horário e criar agendamento manual na própria agenda. Ver clientes **não** foi liberado. Pendente de refletir no Notion.
+- [x] **Decidido (19/out/2026):** o convite por link expira e o dono pode reenviar. Prazo de expiração ainda a definir. Pendente de refletir no Notion.

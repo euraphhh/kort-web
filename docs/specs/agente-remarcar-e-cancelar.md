@@ -27,4 +27,4 @@ O cliente muda ou cancela um agendamento pelo WhatsApp, dentro das regras da bar
 
 ## Em aberto
 
-- [ ] Depois do limite de 2h: recusar ou escalar para humano. Proposta: escalar.
+- [x] **Decidido (19/out/2026):** depois do limite de 2h o agente escala para humano (handoff), em vez de recusar. Pendente de refletir no Notion.
