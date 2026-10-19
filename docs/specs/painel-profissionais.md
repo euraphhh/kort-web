@@ -28,4 +28,4 @@ Cadastrar quem atende, quais serviços faz e quando trabalha, porque o agente s�
 
 ## Em aberto
 
-- [x] **Decidido (19/out/2026):** inativar profissional com agendamentos futuros é permitido, e a tela lista os agendamentos afetados para o dono resolver. Pendente de refletir no Notion. Falta definir se o agente continua oferecendo remarcação desses horários.
+- [x] **Decidido (19/out/2026):** inativar profissional com agendamentos futuros é permitido, e a tela lista os agendamentos afetados para o dono resolver. Pendente de refletir no Notion. O agente oferece remarcação para os clientes desses agendamentos (decidido em 19/out/2026). Os detalhes (quem inicia, texto, o que acontece se o cliente não responde) ainda precisam ser especificados.

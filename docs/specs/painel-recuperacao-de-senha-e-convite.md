@@ -33,6 +33,6 @@ Transformar em telas o que a spec de Login e acesso já exige: recuperação de 
 ## Em aberto
 
 - [x] **Decidido (19/out/2026):** o convite expira e pode ser reenviado pelo dono.
-- [ ] Prazo de expiração do convite.
+- [x] **Decidido (19/out/2026):** o convite expira em 24h.
 - [ ] Regra mínima de senha.
 - [ ] Texto dos e-mails (voz e conteúdo precisam de aprovação do time).

@@ -26,5 +26,5 @@ Manter o agente dentro do escopo, seguro e em conformidade.
 
 ## Em aberto
 
-- [ ] Como responder a imagens, figurinhas e outros tipos de mídia (proposta: mesma resposta de só texto).
-- [ ] O que o agente faz quando o rate limit é atingido.
+- [x] **Decidido (19/out/2026):** imagens, figurinhas e outras mídias recebem a mesma resposta do áudio (só lê texto, pede para escrever) e entram na mesma métrica de mídia não suportada.
+- [x] **Decidido (19/out/2026):** quando o rate limit estoura para um telefone, o agente avisa uma única vez que vai demorar para responder e silencia até liberar. Estouro não gera chamada ao modelo. Texto do aviso precisa de aprovação do time.

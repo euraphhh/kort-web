@@ -28,4 +28,4 @@ Dar ao dono (e, se quiser, ao barbeiro) acesso ao painel, isolado por barbearia.
 ## Em aberto
 
 - [x] **Decidido (19/out/2026):** o barbeiro com login pode marcar compareceu ou faltou, bloquear o próprio horário e criar agendamento manual na própria agenda. Ver clientes **não** foi liberado. Pendente de refletir no Notion.
-- [x] **Decidido (19/out/2026):** o convite por link expira e o dono pode reenviar. Prazo de expiração ainda a definir. Pendente de refletir no Notion.
+- [x] **Decidido (19/out/2026):** o convite por link expira e o dono pode reenviar. Prazo de expiração: 24h. Pendente de refletir no Notion.

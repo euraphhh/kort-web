@@ -25,7 +25,7 @@ O produto trata dado pessoal de clientes finais (nome e telefone) e manda mensag
 ## Em aberto (tudo)
 
 - [ ] Quem redige e valida os textos (o card Legal/Jurídico está no Backlog).
-- [ ] Onde o aceite é pedido: primeiro login do dono, na importação de CSV, ou nos dois.
+- [x] **Decidido (19/out/2026):** o aceite é pedido no primeiro login do dono e, separadamente, na importação de CSV (autorização dos contatos). A validação jurídica dos textos continua pendente.
 - [ ] Como versionar o texto e registrar quem aceitou qual versão.
 - [ ] Se o assistente avisa o cliente final sobre o tratamento dos dados no primeiro contato.
 - [ ] Rodapé da landing e do painel com os links.
