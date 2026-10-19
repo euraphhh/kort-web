@@ -14,6 +14,11 @@ insert into public.barbershop (id, name) values
   ('00000000-0000-0000-0000-00000000aaaa', 'Barbearia A'),
   ('00000000-0000-0000-0000-00000000bbbb', 'Barbearia B');
 
+-- Members and invites point to real professionals of their own barbershop (composite FK).
+insert into public.professional (id, barbershop_id, name) values
+  ('00000000-0000-0000-0000-0000000000c1', '00000000-0000-0000-0000-00000000aaaa', 'Joao'),
+  ('00000000-0000-0000-0000-0000000000c9', '00000000-0000-0000-0000-00000000bbbb', 'Caio');
+
 insert into public.barbershop_member (barbershop_id, user_id, role, professional_id) values
   ('00000000-0000-0000-0000-00000000aaaa', '00000000-0000-0000-0000-0000000000a1', 'owner', null),
   ('00000000-0000-0000-0000-00000000aaaa', '00000000-0000-0000-0000-0000000000a2', 'barber',
