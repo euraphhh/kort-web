@@ -10,7 +10,7 @@
   --bubble: var(--motif);
   --shadow: var(--shadow-float);
   --font: var(--font-manrope), system-ui, sans-serif;
-  --serif: var(--font-serif), Georgia, serif;
+  --serif: var(--font-instrument-serif), var(--font-family-serif);
   --ease: var(--ease-out);
   --pad: clamp(1.25rem, 5vw, 5rem);
   --max: 1320px;
@@ -58,8 +58,7 @@ em { font-family: var(--serif); font-style: italic; font-weight: 400; color: var
 .nav { position: fixed; inset: 0 0 auto 0; z-index: 50; transition: background-color 0.35s ease, backdrop-filter 0.35s ease, box-shadow 0.35s ease; }
 .nav.is-scrolled { background: color-mix(in srgb, var(--bg) 82%, transparent); backdrop-filter: blur(14px) saturate(1.2); box-shadow: 0 1px 0 var(--line); }
 .nav-inner { max-width: calc(var(--max) + var(--pad) * 2); margin: 0 auto; padding: 0.9rem var(--pad); display: flex; align-items: center; gap: 2rem; }
-.nav-logo { width: 78px; display: block; color: var(--ink); transition: transform 0.4s var(--ease); }
-.nav-logo:hover { transform: rotate(-4deg) scale(1.06); }
+.nav-logo { width: 78px; display: block; color: var(--ink); }
 .nav-logo svg { width: 100%; height: auto; }
 .nav-links { display: flex; gap: 1.75rem; margin-left: auto; }
 .nav-links a { text-decoration: none; font-weight: 600; font-size: 0.95rem; color: var(--muted); position: relative; padding: 0.25rem 0; transition: color 0.2s ease; }
@@ -269,21 +268,17 @@ em { font-family: var(--serif); font-style: italic; font-weight: 400; color: var
    (o hero corta o excesso). O celular fica sobre a parte do balão mais próxima do texto. */
 .hero-split .hero-bubble { --size: max(150svh, 62vw); width: var(--size); left: 0; right: auto; top: 50%; margin-top: calc(var(--size) / -2); }
 .hero-split .hero-phone { left: 60%; top: 50%; margin-left: calc(min(360px, 82%) / -2); }
-.hero-split .chip-c { bottom: 8%; left: -24%; }
-/* center: texto centralizado e o celular abaixo, sobre o balão. */
-.hero-center { align-items: flex-start; }
-.hero-center .hero-grid { grid-template-columns: 1fr; text-align: center; gap: 3rem; }
-.hero-center .hero-copy { display: flex; flex-direction: column; align-items: center; }
-.hero-center .hero-sub { margin-inline: auto; }
-.hero-center .hero-actions { justify-content: center; }
-.hero-center .hero-stage { height: 620px; }
-.hero-center .hero-bubble { --size: min(720px, 130%); width: var(--size); left: 50%; right: auto; top: 50%; margin-left: calc(var(--size) / -2); margin-top: calc(var(--size) / -2); }
-.hero-center .hero-phone { margin-left: calc(min(360px, 82%) / -2); }
+.hero-split .hero-stage { transform: translateY(-4.5rem); }
+.hero-split .chip-a { top: 14%; right: 6%; }
+.hero-split .chip-b { top: 30%; left: 6%; }
+.hero-split .chip-c { bottom: 14%; left: -8%; }
+/* sem sombra no hero: a separação é por borda */
+.hero .chat, .hero .chip-inner { box-shadow: none; border: 1px solid var(--line); }
+.hero .btn:not(.btn-ghost), .hero .btn:not(.btn-ghost):hover { box-shadow: none; }
 @media (max-width: 960px) {
   .hero-split .hero-bubble { --size: 130vw; left: 50%; margin-left: calc(var(--size) / -2); margin-top: calc(var(--size) / -2); }
   .hero-split .hero-phone { left: 50%; }
   .hero-split .chip-c { left: 2%; bottom: -1%; }
-  .hero-center .hero-stage { height: 560px; }
 }
 
 /* ---------- patterns entre seções ---------- */
@@ -317,3 +312,10 @@ em { font-family: var(--serif); font-style: italic; font-weight: 400; color: var
   .photo-pair { grid-template-columns: 1fr; }
   .photo-low { margin-top: 0; }
 }
+
+/* entrada do hero em CSS: o texto está no HTML e legível sem JS; com movimento reduzido fica no estado final */
+@keyframes mask-up { from { transform: translateY(112%); } to { transform: none; } }
+@keyframes fade-up { from { opacity: 0; transform: translateY(var(--distance-reveal)); } to { opacity: 1; transform: none; } }
+.mask-in-css { animation: mask-up 0.95s var(--ease-out) both; animation-delay: var(--d, 0s); }
+.fade-up { animation: fade-up 0.9s var(--ease-out) both; animation-delay: var(--d, 0s); }
+@media (prefers-reduced-motion: reduce) { .mask-in-css, .fade-up { animation: none; } }
