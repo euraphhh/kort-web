@@ -1,7 +1,7 @@
 # [PAINEL] [MVP] Equipe e convites
 
 - **Spec no Notion:** ainda não existe (proposta, derivada de `painel-login-e-acesso.md` e `painel-profissionais.md`)
-- **Card:** sem card ainda
+- **Card:** [DEV] Equipe e convites do barbeiro (https://trello.com/c/u9eRc9nk)
 - **Status:** proposta, precisa de aprovação do time
 - **Depende de:** `painel-login-e-acesso.md`, `painel-profissionais.md`
 

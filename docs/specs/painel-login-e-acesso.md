@@ -1,7 +1,7 @@
 # [PAINEL] [MVP] Login e acesso
 
-- **Spec:** https://app.notion.com/p/3f9180da236f81f9a762e8ad6c6e9e2a
-- **Card:** sem card ainda (depende do schema multi-tenant e RLS: https://trello.com/c/JWs7fJyU)
+- **Origem:** versão do Notion removida em 19/out/2026; este arquivo é a fonte
+- **Card:** [DEV] Login e acesso do painel (https://trello.com/c/zuas9jXb)
 - **Status:** spec escrita, não implementada
 - **Decisões gerais:** https://app.notion.com/p/3f9180da236f8158a3bfddefb9a0f222
 

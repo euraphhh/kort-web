@@ -1,7 +1,7 @@
 # [PAINEL] [MVP] Estados vazios, erro e carregamento
 
 - **Spec no Notion:** ainda não existe (proposta, transversal a todas as telas do painel)
-- **Card:** sem card ainda
+- **Card:** [DEV] Layout, navegação e estados do painel (https://trello.com/c/l6CeTSk0)
 - **Status:** proposta, precisa de aprovação do time e de componentes no design system
 
 ## Objetivo

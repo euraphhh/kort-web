@@ -1,7 +1,7 @@
 # [PAINEL] [V1] Cadastro aberto de novas barbearias
 
 - **Spec no Notion:** ainda não existe (proposta; a spec de Login diz que cadastro aberto fica para depois)
-- **Card:** sem card ainda
+- **Card:** [V1] Cadastro aberto de novas barbearias (https://trello.com/c/u2FXeaxX)
 - **Status:** proposta para a V1, **fora do MVP**
 - **Depende de:** `painel-login-e-acesso.md`, `painel-onboarding-do-dono.md`
 

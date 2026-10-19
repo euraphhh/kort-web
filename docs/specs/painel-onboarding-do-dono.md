@@ -1,7 +1,7 @@
 # [PAINEL] [MVP] Onboarding do dono
 
-- **Spec:** https://app.notion.com/p/3f9180da236f81a19773c3656dada0b6
-- **Card:** sem card ainda (decisões de produto: https://trello.com/c/0rt0Ncye)
+- **Origem:** versão do Notion removida em 19/out/2026; este arquivo é a fonte
+- **Card:** [DEV] Onboarding do dono e tela WhatsApp e agente (https://trello.com/c/Briewcow)
 - **Status:** spec escrita, não implementada
 - **Decisões gerais:** https://app.notion.com/p/3f9180da236f8158a3bfddefb9a0f222
 

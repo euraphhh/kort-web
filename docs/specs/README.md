@@ -4,7 +4,7 @@ Fonte da verdade das specs do produto (desde 19/out/2026). Um arquivo por featur
 
 Cada arquivo tem:
 
-- **Spec no Notion:** link da versão original, quando existe. A versão do Notion pode estar desatualizada em relação a este arquivo.
+- **Origem:** de onde a spec veio. As 19 specs do MVP foram removidas do Notion em 19/out/2026; os arquivos daqui são a fonte.
 - **Card:** link do Trello
 - **Status:** proposta, spec escrita (não implementada), em andamento ou pronta
 - **Comportamento, critérios de aceite, fora do escopo e em aberto**

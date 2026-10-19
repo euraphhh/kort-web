@@ -1,7 +1,7 @@
 # [PAINEL] [MVP] Termos de uso e política de privacidade
 
 - **Spec no Notion:** ainda não existe (proposta, **precisa ser discutida com o time**)
-- **Card:** depende do [NEGÓCIO] Legal/Jurídico (https://trello.com/c/D01uSnXW)
+- **Card:** [NEGÓCIO] Termos de uso e política de privacidade (https://trello.com/c/JZstj7N1)
 - **Status:** em discussão. Não implementar antes de decidir.
 
 ## Objetivo

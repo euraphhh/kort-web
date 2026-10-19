@@ -1,7 +1,7 @@
 # [PAINEL] [MVP] Configurações da barbearia
 
-- **Spec:** https://app.notion.com/p/3f9180da236f8141a0f6cdc484d21472
-- **Card:** sem card ainda
+- **Origem:** versão do Notion removida em 19/out/2026; este arquivo é a fonte
+- **Card:** [DEV] Cadastros base: serviços, profissionais e configurações (https://trello.com/c/uUdAvzis)
 - **Status:** spec escrita, não implementada
 - **Decisões gerais:** https://app.notion.com/p/3f9180da236f8158a3bfddefb9a0f222
 - **Quem usa estes dados:** `agente-duvidas-basicas-faq.md` e `agente-lembretes-e-confirmacao.md`
