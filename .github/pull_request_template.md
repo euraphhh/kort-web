@@ -4,7 +4,7 @@
 
 ## Spec
 
-<!-- Link da spec no Notion e do card no Trello. Obrigatório. -->
+<!-- Arquivo da spec em docs/specs/ e link do card no Trello. Obrigatório. -->
 
 - Spec:
 - Card:

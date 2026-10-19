@@ -1,19 +1,21 @@
 # Specs
 
-Espelho enxuto das specs do Notion (fonte da verdade: Notion › Specs). Um arquivo por feature, nomeado como a spec, por exemplo `painel-login-e-acesso.md`.
+Fonte da verdade das specs do produto (desde 19/out/2026). Um arquivo por feature, por exemplo `painel-login-e-acesso.md`. Decisões de arquitetura e de stack continuam no Notion (Decisões | SaaS).
 
 Cada arquivo tem:
 
-- **Spec:** link do Notion
+- **Spec no Notion:** link da versão original, quando existe. A versão do Notion pode estar desatualizada em relação a este arquivo.
 - **Card:** link do Trello
-- **Status:** rascunho, em andamento ou pronto
-- **Critérios de aceite:** lista copiada da spec
+- **Status:** proposta, spec escrita (não implementada), em andamento ou pronta
+- **Comportamento, critérios de aceite, fora do escopo e em aberto**
+
+Decisões tomadas ficam marcadas inline como `[x] Decidido (data)`. Mudou uma decisão? Atualize o arquivo no mesmo PR.
 
 Cada PR cita a spec correspondente.
 
 ## Índice
 
-**Espelho das specs do Notion (19):** arquivos `agente-*.md` e `painel-*.md` com link de spec do Notion.
+**Specs do MVP, espelhadas do Notion (19):** arquivos `agente-*.md` e `painel-*.md` com link de spec do Notion.
 
 **Propostas sem spec no Notion (8), a aprovar pelo time:**
 
@@ -28,4 +30,4 @@ Cada PR cita a spec correspondente.
 | `painel-termos-e-privacidade.md` | em discussão |
 | `painel-perfil-e-conta.md` | MVP |
 
-Proposta vira spec só depois de aprovada e copiada para o Notion; até lá o status do arquivo diz "proposta".
+Uma proposta vira spec quando o time aprova e o status do arquivo muda.
