@@ -1,6 +1,6 @@
 # [AGENTE] [MVP] Remarcar e cancelar
 
-- **Spec:** https://app.notion.com/p/3f9180da236f8105ab4ef2cab5d00f9f
+- **Origem:** versão do Notion removida em 19/out/2026; este arquivo é a fonte
 - **Card:** [DEV] Tools determinísticas do agente (https://trello.com/c/iXSp0an1)
 - **Status:** spec escrita, não implementada
 - **Decisões gerais:** https://app.notion.com/p/3f9180da236f81f68e3dcfa06d630d34

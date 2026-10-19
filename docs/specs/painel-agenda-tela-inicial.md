@@ -1,7 +1,7 @@
 # [PAINEL] [MVP] Agenda (tela inicial)
 
-- **Spec:** https://app.notion.com/p/3f9180da236f8154a54cd010825fd09f
-- **Card:** sem card ainda
+- **Origem:** versão do Notion removida em 19/out/2026; este arquivo é a fonte
+- **Card:** [DEV] Agenda, bloqueios e agendamento manual (https://trello.com/c/5WFMWTDt)
 - **Status:** spec escrita, não implementada
 - **Decisões gerais:** https://app.notion.com/p/3f9180da236f8158a3bfddefb9a0f222
 

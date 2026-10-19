@@ -1,6 +1,6 @@
 # [AGENTE] [MVP] Canal WhatsApp (webhook, limites e número)
 
-- **Spec:** https://app.notion.com/p/3f9180da236f81ab99c6e435d53094e4
+- **Origem:** versão do Notion removida em 19/out/2026; este arquivo é a fonte
 - **Card:** [DEV] Canal WhatsApp (Meta Cloud API, número e webhook) (https://trello.com/c/ufFCMp6z)
 - **Status:** spec escrita, não implementada
 - **Decisões gerais:** https://app.notion.com/p/3f9180da236f81f68e3dcfa06d630d34

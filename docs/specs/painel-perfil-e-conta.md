@@ -1,7 +1,7 @@
 # [PAINEL] [MVP] Perfil e conta do usuário
 
 - **Spec no Notion:** ainda não existe (proposta, derivada de `painel-login-e-acesso.md`)
-- **Card:** sem card ainda
+- **Card:** [DEV] Layout, navegação e estados do painel (https://trello.com/c/l6CeTSk0)
 - **Status:** proposta, precisa de aprovação do time
 - **Depende de:** `painel-login-e-acesso.md`
 

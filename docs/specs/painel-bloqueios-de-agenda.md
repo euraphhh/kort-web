@@ -1,7 +1,7 @@
 # [PAINEL] [MVP] Bloqueios de agenda
 
 - **Spec no Notion:** ainda não existe (proposta; o bloqueio pontual é citado em `painel-agenda-tela-inicial.md`)
-- **Card:** sem card ainda
+- **Card:** [DEV] Agenda, bloqueios e agendamento manual (https://trello.com/c/5WFMWTDt)
 - **Status:** proposta, precisa de aprovação do time
 - **Depende de:** `painel-agenda-tela-inicial.md`, `painel-profissionais.md`
 

@@ -1,6 +1,6 @@
 # [AGENTE] [MVP] Observabilidade, retenção e evals
 
-- **Spec:** https://app.notion.com/p/3f9180da236f81f093bcc7dd5954ab0b
+- **Origem:** versão do Notion removida em 19/out/2026; este arquivo é a fonte
 - **Card:** [DEV] Observabilidade, retenção e evals do agente (https://trello.com/c/6d0g2BW0)
 - **Status:** spec escrita, não implementada
 - **Decisões gerais:** https://app.notion.com/p/3f9180da236f81f68e3dcfa06d630d34

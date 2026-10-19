@@ -1,7 +1,7 @@
 # [INTERNO] [MVP] Painel do time (papel staff)
 
 - **Spec no Notion:** ainda não existe (proposta; a arquitetura prevê o papel `staff` via claim, sem telas)
-- **Card:** sem card ainda
+- **Card:** [DEV] Operação dos pilotos (scripts do time) (https://trello.com/c/AaFtpDpe)
 - **Status:** proposta, precisa de aprovação do time
 - **Depende de:** schema multi-tenant e RLS, `painel-login-e-acesso.md`
 
