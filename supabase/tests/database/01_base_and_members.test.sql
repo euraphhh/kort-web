@@ -23,6 +23,17 @@ insert into public.barbershop_member (barbershop_id, user_id, role, professional
 insert into public.invite (barbershop_id, professional_id) values
   ('00000000-0000-0000-0000-00000000bbbb', '00000000-0000-0000-0000-0000000000c9');
 
+-- Runs a DML statement as the current role and returns how many rows it affected.
+create function pg_temp.affected(q text) returns int
+language plpgsql as $$
+declare n int;
+begin
+  execute q;
+  get diagnostics n = row_count;
+  return n;
+end;
+$$;
+
 -- owner of A ---------------------------------------------------------------
 
 set local role authenticated;
@@ -39,10 +50,8 @@ select is((select count(*)::int from public.invite), 0,
   'owner does not see invites of another barbershop');
 
 select is(
-  (with u as (
-    update public.barbershop set name = 'hacked'
-    where id = '00000000-0000-0000-0000-00000000bbbb' returning 1
-  ) select count(*)::int from u),
+  pg_temp.affected($$update public.barbershop set name = 'hacked'
+    where id = '00000000-0000-0000-0000-00000000bbbb'$$),
   0, 'owner cannot update another barbershop');
 
 select lives_ok(
@@ -84,17 +93,13 @@ select throws_ok(
   '42501', null, 'barber cannot create invites');
 
 select is(
-  (with u as (
-    update public.barbershop set name = 'hacked'
-    where id = '00000000-0000-0000-0000-00000000aaaa' returning 1
-  ) select count(*)::int from u),
+  pg_temp.affected($$update public.barbershop set name = 'hacked'
+    where id = '00000000-0000-0000-0000-00000000aaaa'$$),
   0, 'barber cannot update the barbershop');
 
 select is(
-  (with d as (
-    delete from public.barbershop_member
-    where user_id = '00000000-0000-0000-0000-0000000000a1' returning 1
-  ) select count(*)::int from d),
+  pg_temp.affected($$delete from public.barbershop_member
+    where user_id = '00000000-0000-0000-0000-0000000000a1'$$),
   0, 'barber cannot delete members');
 
 -- owner of A revokes access --------------------------------------------------
@@ -103,17 +108,13 @@ select set_config('request.jwt.claims',
   '{"sub":"00000000-0000-0000-0000-0000000000a1","role":"authenticated"}', true);
 
 select is(
-  (with d as (
-    delete from public.barbershop_member
-    where user_id = '00000000-0000-0000-0000-0000000000a1' returning 1
-  ) select count(*)::int from d),
+  pg_temp.affected($$delete from public.barbershop_member
+    where user_id = '00000000-0000-0000-0000-0000000000a1'$$),
   0, 'owner cannot delete an owner row');
 
 select is(
-  (with d as (
-    delete from public.barbershop_member
-    where user_id = '00000000-0000-0000-0000-0000000000a2' returning 1
-  ) select count(*)::int from d),
+  pg_temp.affected($$delete from public.barbershop_member
+    where user_id = '00000000-0000-0000-0000-0000000000a2'$$),
   1, 'owner can revoke a barber');
 
 -- anonymous ----------------------------------------------------------------
