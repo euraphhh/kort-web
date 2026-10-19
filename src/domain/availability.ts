@@ -19,7 +19,8 @@ export type WeeklyInterval = {
 export type Interval = { start: Temporal.Instant; end: Temporal.Instant };
 
 export type AppointmentStatus = "scheduled" | "completed" | "cancelled" | "no_show";
-export type BusyAppointment = Interval & { status: AppointmentStatus };
+/** `id` lets a reschedule leave the appointment being moved out of its own conflict check. */
+export type BusyAppointment = Interval & { status: AppointmentStatus; id?: string };
 
 export type AvailabilityInput = {
   /** Local calendar day to compute. */
@@ -44,7 +45,7 @@ const later = (a: Temporal.Instant, b: Temporal.Instant) => (after(a, b) ? a : b
 const earlier = (a: Temporal.Instant, b: Temporal.Instant) => (before(a, b) ? a : b);
 
 /** The weekly intervals of that weekday as instants on `date`, sorted and merged. */
-function windowsOn(date: Temporal.PlainDate, weekly: WeeklyInterval[]): Interval[] {
+export function weeklyWindowsOn(date: Temporal.PlainDate, weekly: WeeklyInterval[]): Interval[] {
   const day = weekdayIndex(date);
   const intervals = weekly
     .filter((w) => w.weekday === day)
@@ -65,6 +66,16 @@ function windowsOn(date: Temporal.PlainDate, weekly: WeeklyInterval[]): Interval
     }
   }
   return merged;
+}
+
+/** Whether the whole interval sits inside one of the windows. */
+export function fitsWithin(windows: Interval[], interval: Interval): boolean {
+  return windows.some((w) => !before(interval.start, w.start) && !after(interval.end, w.end));
+}
+
+/** Whether two half-open intervals share any time. */
+export function overlaps(a: Interval, b: Interval): boolean {
+  return before(a.start, b.end) && before(b.start, a.end);
 }
 
 /** Overlap between two sorted, non-overlapping lists of intervals. */
@@ -119,8 +130,8 @@ export function availableSlots(input: AvailabilityInput): Temporal.Instant[] {
   if (Temporal.PlainDate.compare(input.date, lastBookableDay) > 0) return [];
 
   const open = intersect(
-    windowsOn(input.date, input.businessHours),
-    windowsOn(input.date, input.professionalHours),
+    weeklyWindowsOn(input.date, input.businessHours),
+    weeklyWindowsOn(input.date, input.professionalHours),
   );
   const busy: Interval[] = [
     ...input.appointments.filter((a) => a.status !== "cancelled"),

@@ -18,6 +18,13 @@ O cliente muda ou cancela um agendamento pelo WhatsApp, dentro das regras da bar
 - Só confirma ao cliente depois de a tool retornar sucesso.
 - Faltas não são tratadas aqui: o status "faltou" é registrado pelo painel.
 
+## Decisões de implementação (19/out/2026)
+
+- Remarcar é **um único UPDATE**: se o novo horário for recusado (pelo domínio ou pelo `23P01` do banco), o original permanece. A remarcação mantém o preço e a duração com que o agendamento foi feito.
+- O limite de cancelamento ou remarcação é inclusivo: exatamente 2h antes ainda vale. Passou disso, o agente **escala para humano**.
+- Só se cancela ou remarca um agendamento "agendado". Dono e barbeiro (na própria agenda) ignoram o limite.
+- Regras em `src/domain/scheduling.ts` (`planReschedule` e `planCancel`).
+
 ## Critérios de aceite
 
 - [ ] Cancelamento dentro do limite grava status cancelado e libera o horário.

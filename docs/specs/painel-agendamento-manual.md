@@ -34,4 +34,4 @@ O dono marca, remarca e cancela agendamentos que chegam por telefone ou pessoalm
 
 - [ ] Marcar em horário fora da disponibilidade do profissional ou sobre um bloqueio: permitir com aviso (proposta), exceto sobrepor outro agendamento.
 - [x] **Decidido (19/out/2026):** o barbeiro com login também ignora a antecedência mínima ao marcar na própria agenda.
-- [ ] O barbeiro ignora também o limite de cancelamento ou remarcação e pode marcar fora do horário de funcionamento (com aviso)?
+- [x] **Decidido (19/out/2026):** o barbeiro tem as mesmas exceções do dono na própria agenda: ignora a antecedência mínima e o limite de cancelamento ou remarcação, e pode marcar fora do horário de funcionamento ou sobre um bloqueio, com aviso. Nunca sobre outro agendamento. Implementado em `src/domain/scheduling.ts`.
