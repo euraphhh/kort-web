@@ -1,0 +1,154 @@
+begin;
+create extension if not exists pgtap with schema extensions;
+
+select plan(21);
+
+-- fixtures (as the postgres superuser) ---------------------------------------
+
+insert into auth.users (id, email) values
+  ('00000000-0000-0000-0000-0000000000a1', 'owner-a@test.kort'),
+  ('00000000-0000-0000-0000-0000000000a2', 'barber-a@test.kort'),
+  ('00000000-0000-0000-0000-0000000000b1', 'owner-b@test.kort');
+
+insert into public.barbershop (id, name) values
+  ('00000000-0000-0000-0000-00000000aaaa', 'Barbearia A'),
+  ('00000000-0000-0000-0000-00000000bbbb', 'Barbearia B');
+
+insert into public.barbershop_member (barbershop_id, user_id, role, professional_id) values
+  ('00000000-0000-0000-0000-00000000aaaa', '00000000-0000-0000-0000-0000000000a1', 'owner', null),
+  ('00000000-0000-0000-0000-00000000aaaa', '00000000-0000-0000-0000-0000000000a2', 'barber',
+    '00000000-0000-0000-0000-0000000000c1'),
+  ('00000000-0000-0000-0000-00000000bbbb', '00000000-0000-0000-0000-0000000000b1', 'owner', null);
+
+insert into public.invite (barbershop_id, professional_id) values
+  ('00000000-0000-0000-0000-00000000bbbb', '00000000-0000-0000-0000-0000000000c9');
+
+-- owner of A ---------------------------------------------------------------
+
+set local role authenticated;
+select set_config('request.jwt.claims',
+  '{"sub":"00000000-0000-0000-0000-0000000000a1","role":"authenticated"}', true);
+
+select is((select count(*)::int from public.barbershop), 1,
+  'owner sees only their own barbershop');
+
+select is((select count(*)::int from public.barbershop_member), 2,
+  'owner sees the members of their own barbershop only');
+
+select is((select count(*)::int from public.invite), 0,
+  'owner does not see invites of another barbershop');
+
+select is(
+  (with u as (
+    update public.barbershop set name = 'hacked'
+    where id = '00000000-0000-0000-0000-00000000bbbb' returning 1
+  ) select count(*)::int from u),
+  0, 'owner cannot update another barbershop');
+
+select lives_ok(
+  $$update public.barbershop set name = 'Barbearia A2' where id = '00000000-0000-0000-0000-00000000aaaa'$$,
+  'owner can update their own barbershop');
+
+select throws_ok(
+  $$update public.barbershop set whatsapp_phone_number = '5511999999999'
+    where id = '00000000-0000-0000-0000-00000000aaaa'$$,
+  '42501', null, 'owner cannot change the WhatsApp number (team only)');
+
+select lives_ok(
+  $$insert into public.invite (barbershop_id, professional_id)
+    values ('00000000-0000-0000-0000-00000000aaaa', '00000000-0000-0000-0000-0000000000c1')$$,
+  'owner can create an invite for their own barbershop');
+
+select throws_ok(
+  $$insert into public.invite (barbershop_id, professional_id)
+    values ('00000000-0000-0000-0000-00000000bbbb', '00000000-0000-0000-0000-0000000000c1')$$,
+  '42501', null, 'owner cannot create an invite for another barbershop');
+
+-- barber of A --------------------------------------------------------------
+
+select set_config('request.jwt.claims',
+  '{"sub":"00000000-0000-0000-0000-0000000000a2","role":"authenticated"}', true);
+
+select is((select count(*)::int from public.barbershop), 1,
+  'barber sees only their own barbershop');
+
+select is((select count(*)::int from public.barbershop_member), 1,
+  'barber sees only their own member row');
+
+select is((select count(*)::int from public.invite), 0,
+  'barber does not see invites');
+
+select throws_ok(
+  $$insert into public.invite (barbershop_id, professional_id)
+    values ('00000000-0000-0000-0000-00000000aaaa', '00000000-0000-0000-0000-0000000000c1')$$,
+  '42501', null, 'barber cannot create invites');
+
+select is(
+  (with u as (
+    update public.barbershop set name = 'hacked'
+    where id = '00000000-0000-0000-0000-00000000aaaa' returning 1
+  ) select count(*)::int from u),
+  0, 'barber cannot update the barbershop');
+
+select is(
+  (with d as (
+    delete from public.barbershop_member
+    where user_id = '00000000-0000-0000-0000-0000000000a1' returning 1
+  ) select count(*)::int from d),
+  0, 'barber cannot delete members');
+
+-- owner of A revokes access --------------------------------------------------
+
+select set_config('request.jwt.claims',
+  '{"sub":"00000000-0000-0000-0000-0000000000a1","role":"authenticated"}', true);
+
+select is(
+  (with d as (
+    delete from public.barbershop_member
+    where user_id = '00000000-0000-0000-0000-0000000000a1' returning 1
+  ) select count(*)::int from d),
+  0, 'owner cannot delete an owner row');
+
+select is(
+  (with d as (
+    delete from public.barbershop_member
+    where user_id = '00000000-0000-0000-0000-0000000000a2' returning 1
+  ) select count(*)::int from d),
+  1, 'owner can revoke a barber');
+
+-- anonymous ----------------------------------------------------------------
+
+reset role;
+set local role anon;
+
+select throws_ok(
+  $$select count(*) from public.barbershop$$,
+  '42501', null, 'anon has no access to barbershop');
+
+-- constraints (as superuser) -------------------------------------------------
+
+reset role;
+
+select throws_ok(
+  $$insert into public.barbershop_member (barbershop_id, user_id, role)
+    values ('00000000-0000-0000-0000-00000000bbbb', '00000000-0000-0000-0000-0000000000a2', 'owner')$$,
+  '23505', null, 'a barbershop cannot have two owners');
+
+select throws_ok(
+  $$insert into public.barbershop_member (barbershop_id, user_id, role)
+    values ('00000000-0000-0000-0000-00000000bbbb', '00000000-0000-0000-0000-0000000000a2', 'barber')$$,
+  '23514', null, 'a barber must be tied to a professional');
+
+-- staff claim --------------------------------------------------------------
+
+set local role authenticated;
+select set_config('request.jwt.claims',
+  '{"sub":"00000000-0000-0000-0000-0000000000a2","role":"authenticated"}', true);
+select is(public.is_staff(), false, 'is_staff is false without the claim');
+
+select set_config('request.jwt.claims',
+  '{"sub":"00000000-0000-0000-0000-0000000000a2","role":"authenticated","app_metadata":{"kort_role":"staff"}}', true);
+select is(public.is_staff(), true, 'is_staff is true with app_metadata.kort_role = staff');
+
+select * from finish();
+rollback;
