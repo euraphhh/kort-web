@@ -8,17 +8,15 @@ export const metadata: Metadata = {
 
 export default function LoginPage() {
   return (
-    <section
-      aria-labelledby="login-title"
-      className="w-full max-w-prose rounded-lg border border-border bg-surface-1 p-(--space-5) md:p-(--space-6)"
-    >
-      <h1 id="login-title" className="text-heading text-text">
+    <section aria-labelledby="login-title" className="w-full max-w-[calc(var(--space-9)*4)]">
+      <h1 id="login-title" className="text-display text-text">
         Entrar
       </h1>
-      <p className="mt-(--space-2) mb-(--space-5) text-body text-text-muted">
-        Acesse o painel da sua barbearia.
-      </p>
+      <p className="mt-(--space-2) text-lead text-text-muted">Acesse o painel da sua barbearia.</p>
       <LoginForm />
+      <p className="mt-(--space-6) text-caption text-text-muted">
+        Primeiro acesso? Use o link de convite que o dono da barbearia enviou.
+      </p>
     </section>
   );
 }

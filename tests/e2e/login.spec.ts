@@ -5,11 +5,15 @@ test.describe("login", () => {
     await page.goto("/login");
   });
 
+  const email = (page: import("@playwright/test").Page) => page.getByLabel("E-mail", { exact: true });
+  const password = (page: import("@playwright/test").Page) => page.getByLabel("Senha", { exact: true });
+  const submit = (page: import("@playwright/test").Page) => page.getByRole("button", { name: "Entrar", exact: true });
+
   test("has a single h1, labelled fields and no horizontal scroll", async ({ page }) => {
     await expect(page.locator("h1")).toHaveCount(1);
     await expect(page.getByRole("heading", { level: 1, name: "Entrar" })).toBeVisible();
-    await expect(page.getByLabel("E-mail")).toBeVisible();
-    await expect(page.getByLabel("Senha")).toBeVisible();
+    await expect(email(page)).toBeVisible();
+    await expect(password(page)).toBeVisible();
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth);
     expect(overflow).toBe(false);
   });
@@ -18,35 +22,66 @@ test.describe("login", () => {
     await expect(page.locator('meta[name="robots"]')).toHaveAttribute("content", /noindex/);
   });
 
+  test("shows the brand and the way in", async ({ page }) => {
+    await expect(page.getByText("chamou, agendou.")).toBeVisible();
+    await expect(page.getByRole("button", { name: "Continuar com Google" })).toBeVisible();
+    await expect(page.getByRole("button", { name: "Continuar com Apple" })).toBeVisible();
+    await expect(page.getByText("ou entre com e-mail")).toBeVisible();
+  });
+
   test("asks for the missing fields, in words", async ({ page }) => {
-    await page.getByRole("button", { name: "Entrar" }).click();
+    await submit(page).click();
     await expect(page.getByText("Informe seu e-mail.")).toBeVisible();
     await expect(page.getByText("Informe sua senha.")).toBeVisible();
-    await expect(page.getByLabel("E-mail")).toHaveAttribute("aria-invalid", "true");
-    await expect(page.getByLabel("Senha")).toHaveAttribute("aria-invalid", "true");
+    await expect(email(page)).toHaveAttribute("aria-invalid", "true");
+    await expect(password(page)).toHaveAttribute("aria-invalid", "true");
   });
 
   test("explains an invalid e-mail and keeps what was typed", async ({ page }) => {
-    await page.getByLabel("E-mail").fill("sem-arroba");
-    await page.getByLabel("Senha").fill("segredo");
-    await page.getByRole("button", { name: "Entrar" }).click();
+    await email(page).fill("sem-arroba");
+    await password(page).fill("segredo");
+    await submit(page).click();
     await expect(page.getByText("Informe um e-mail válido, como nome@barbearia.com.")).toBeVisible();
-    await expect(page.getByLabel("E-mail")).toHaveValue("sem-arroba");
+    await expect(email(page)).toHaveValue("sem-arroba");
   });
 
   test("says login is not available yet, without clearing the e-mail", async ({ page }) => {
-    await page.getByLabel("E-mail").fill("dono@barbearia.com");
-    await page.getByLabel("Senha").fill("segredo");
-    await page.getByRole("button", { name: "Entrar" }).click();
-    // Next.js has its own role="alert" (route announcer), so scope this to the login card.
+    await email(page).fill("dono@barbearia.com");
+    await password(page).fill("segredo");
+    await submit(page).click();
+    // Next.js has its own role="alert" (route announcer), so scope this to the login section.
     await expect(page.getByRole("region", { name: "Entrar" }).getByRole("alert")).toContainText(
       "Entrar ainda não está disponível",
     );
-    await expect(page.getByLabel("E-mail")).toHaveValue("dono@barbearia.com");
+    await expect(email(page)).toHaveValue("dono@barbearia.com");
+  });
+
+  test("shows and hides the password, saying which state it is in", async ({ page }) => {
+    await password(page).fill("segredo");
+    await expect(password(page)).toHaveAttribute("type", "password");
+    await page.getByRole("button", { name: "Mostrar senha" }).click();
+    await expect(password(page)).toHaveAttribute("type", "text");
+    await expect(password(page)).toHaveValue("segredo");
+    await expect(page.getByRole("button", { name: "Ocultar senha" })).toHaveAttribute("aria-pressed", "true");
+  });
+
+  test("social login is visual only and says so", async ({ page }) => {
+    await page.getByRole("button", { name: "Continuar com Google" }).click();
+    await expect(page.getByRole("status")).toContainText("Entrar com Google ainda não está disponível");
+    await page.getByRole("button", { name: "Continuar com Apple" }).click();
+    await expect(page.getByRole("status")).toContainText("Entrar com Apple ainda não está disponível");
   });
 
   test("is usable by keyboard, with a visible focus ring on every control", async ({ page }) => {
-    const order = ["E-mail", "Senha", "Entrar", "Esqueci minha senha"];
+    const order = [
+      "Continuar com Google",
+      "Continuar com Apple",
+      "E-mail",
+      "Senha",
+      "Mostrar",
+      "Esqueci minha senha",
+      "Entrar",
+    ];
     for (const name of order) {
       await page.keyboard.press("Tab");
       const focused = page.locator(":focus");
