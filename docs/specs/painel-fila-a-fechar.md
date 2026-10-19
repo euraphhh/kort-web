@@ -23,6 +23,13 @@ Falta que ninguém marcou virar "compareceu" subestima a taxa de falta. Esse dad
 - Sem notificação push no MVP (é web). Depende de o dono abrir o painel, e o fallback cobre isso.
 - Status possíveis: agendado, concluído, cancelado, faltou.
 
+## Decisões de implementação (19/out/2026)
+
+- Compareceu ou faltou só pode ser marcado **a partir do horário de início** do agendamento (não fecha agendamento futuro).
+- Depois de fechado, **só o dono corrige**, e só trocando entre compareceu e faltou. O barbeiro não muda depois de fechar. Nunca volta para "agendado". Cancelado é definitivo.
+- Quem fecha: dono e barbeiro (na própria agenda). O agente nunca fecha.
+- Regras em `src/domain/scheduling.ts` (`planClose`).
+
 ## Critérios de aceite
 
 - [ ] Agendamento passado sem status aparece na fila e no contador.
