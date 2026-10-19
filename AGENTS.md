@@ -1,12 +1,12 @@
 # AGENTS.md — kort
 
-Escopo atual: a landing está no ar. Painel, API e agente de WhatsApp seguem as specs do Notion (Specs), mas **só se constrói o que estiver em "Fazendo" no Trello, um card por vez**. Sem card em andamento, não crie nem mexa nessas áreas.
+Escopo atual: a landing está no ar. Painel, API e agente de WhatsApp seguem as specs em `docs/specs/` (fonte da verdade das specs), mas **só se constrói o que estiver em "Fazendo" no Trello, um card por vez**. Sem card em andamento, não crie nem mexa nessas áreas.
 
 ## O produto
 
 - kort: sistema de agendamento para barbearias com assistente de IA no WhatsApp. Tagline do design system: "chamou, agendou."
 - Quem decide a compra: o dono da barbearia (e os barbeiros), no celular. O cliente final fala com o assistente no WhatsApp da própria barbearia e quase não vê a kort.
-- Só prometa funcionalidade que esteja na spec do MVP (Notion › Specs). Sem acesso à spec, pergunte; não suponha.
+- Só prometa funcionalidade que esteja numa spec do MVP em `docs/specs/`. Specs com status "proposta" ainda não estão aprovadas: não as trate como decididas. Sem spec para o que foi pedido, pergunte; não suponha.
 
 ## Stack e estrutura
 
@@ -20,7 +20,7 @@ Arquitetura completa e motivos: Notion › Decisões | SaaS › "Arquitetura de 
   - `src/app/api/`: `/api/v1` (REST com Zod e OpenAPI) e `/api/whatsapp` (webhook).
   - `src/domain/`: agenda, disponibilidade, regras e dinheiro, em TypeScript puro e testado. Painel e tools do agente chamam esta camada. UI e agente nunca reimplementam regra de agenda.
   - `src/agent/`: prompt, tools e loop. Tools em inglês (`check_availability`, `create_appointment`...).
-  - `supabase/migrations/`: schema, RLS e exclusion constraint. `docs/specs/`: espelho enxuto das specs (link, critérios de aceite, status).
+  - `supabase/migrations/`: schema, RLS e exclusion constraint. `docs/specs/`: as specs do produto (comportamento, critérios de aceite, decisões, status). Decisões de arquitetura continuam no Notion.
 - **Regras que não se quebra:** o LLM nunca escreve no banco (só chama tools determinísticas); só confirma depois de gravar; sem overbooking, garantido pelo Postgres; toda tabela tem `barbershop_id` e o servidor injeta o valor a partir do número do WhatsApp, nunca o modelo; UTC no banco, America/Sao_Paulo na tela, dinheiro em centavos; o webhook valida a assinatura da Meta, deduplica por ID, responde 200 e enfileira; schemas Zod únicos para validação, formulários, OpenAPI e tools; dado pessoal em log só com acesso restrito e retenção de 90 dias.
 - **Ambientes:** local, staging (`dev`, Supabase próprio e número de teste da Meta) e produção (`main`). Variáveis em `.env.example`; segredos só na Vercel e em `.env` local, nunca no repo.
 - **Docker:** `docker compose up --build web` sobe a imagem de produção (standalone) com Redis, para testar cache e rotas como em produção; `web-dev` dá hot reload. O Supabase local sobe à parte com `npx supabase start`.
@@ -82,7 +82,7 @@ Arquitetura completa e motivos: Notion › Decisões | SaaS › "Arquitetura de 
 
 - Tarefa grande: proponha o plano (seções, componentes, o que falta no design system) e espere aprovação antes de codar.
 - Se o design system não cobre algo (token, componente, estado), proponha a adição e avise. Não improvise em silêncio e não crie valor solto.
-- Mudanças e commits pequenos, convencionais, em inglês. Branches curtas (`feat/...`, `fix/...`) com PR para `dev` e, para publicar, PR de `dev` para `main`; CI verde obrigatório. Cada PR cita a spec do Notion.
+- Mudanças e commits pequenos, convencionais, em inglês. Branches curtas (`feat/...`, `fix/...`) com PR para `dev` e, para publicar, PR de `dev` para `main`; CI verde obrigatório. Cada PR cita a spec em `docs/specs/`. Mudou uma decisão de produto? Atualize o arquivo da spec no mesmo PR.
 - Fique dentro da área do card em andamento (por exemplo `(marketing)`, `components/marketing`, `styles`, `public/brand`, `design`, `scripts` na landing); fora dela, avise.
 - Dependência nova: avise e justifique antes de instalar. Não leia nem altere `.env` ou segredos.
 
