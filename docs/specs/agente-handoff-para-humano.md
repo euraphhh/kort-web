@@ -1,7 +1,7 @@
 # [AGENTE] [MVP] Handoff para humano
 
-- **Spec:** https://app.notion.com/p/3f9180da236f81248f5edf11dae05eb0
-- **Card:** sem card ainda
+- **Origem:** versão do Notion removida em 19/out/2026; este arquivo é a fonte
+- **Card:** [DEV] Lembretes, confirmação e handoff para humano (https://trello.com/c/Vd1FNO3O)
 - **Status:** spec escrita, não implementada
 - **Decisões gerais:** https://app.notion.com/p/3f9180da236f81f68e3dcfa06d630d34
 

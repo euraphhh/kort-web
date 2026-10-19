@@ -1,7 +1,7 @@
 # [PAINEL] [MVP] Fila a fechar (status do agendamento)
 
-- **Spec:** https://app.notion.com/p/3f9180da236f813598abfbe5b782cd72
-- **Card:** sem card ainda
+- **Origem:** versão do Notion removida em 19/out/2026; este arquivo é a fonte
+- **Card:** [DEV] Fila a fechar (https://trello.com/c/h4hAfiC4)
 - **Status:** spec escrita, não implementada
 - **Decisões gerais:** https://app.notion.com/p/3f9180da236f8158a3bfddefb9a0f222
 

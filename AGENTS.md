@@ -76,7 +76,13 @@ Arquitetura completa e motivos: Notion › Decisões | SaaS › "Arquitetura de 
 - `motion`: padrões de animação com Motion.
 - `vercel-react-best-practices`: ao escrever ou refatorar componentes e carregamento de dados.
 - `web-design-guidelines`: na revisão final de UI.
-- Não instale nem crie outras skills ou plugins.
+- **Skills do time** ficam em `.claude/skills/<nome>/SKILL.md`, para qualquer agente. Se a sua ferramenta não carrega skills sozinha, abra o arquivo e siga o passo a passo.
+  - `implementar-spec`: ao pegar um card, antes de escrever código.
+  - `revisar-rls-multitenant`: ao mexer em `supabase/`, queries, API, webhook ou agente.
+  - `revisar-ui`: ao mexer em tela, componente ou estilo.
+  - `abrir-pr`: antes de todo push ou PR.
+- **Regra antes de subir:** rode `abrir-pr` e as skills aplicáveis (`revisar-rls-multitenant`, `revisar-ui`) antes de qualquer push. Não suba com item reprovado.
+- Não instale nem crie outras skills ou plugins além dessas sem avisar o tech lead.
 
 ## Como trabalhar
 

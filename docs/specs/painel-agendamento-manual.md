@@ -1,7 +1,7 @@
 # [PAINEL] [MVP] Agendamento manual
 
-- **Spec:** https://app.notion.com/p/3f9180da236f81908248e7f1cba954ab
-- **Card:** sem card ainda
+- **Origem:** versão do Notion removida em 19/out/2026; este arquivo é a fonte
+- **Card:** [DEV] Agenda, bloqueios e agendamento manual (https://trello.com/c/5WFMWTDt)
 - **Status:** spec escrita, não implementada
 - **Decisões gerais:** https://app.notion.com/p/3f9180da236f8158a3bfddefb9a0f222
 - **Regras do agente:** `agente-agendar-horario.md`

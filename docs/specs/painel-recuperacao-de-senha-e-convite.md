@@ -1,7 +1,7 @@
 # [PAINEL] [MVP] Esqueci a senha, redefinir senha e aceitar convite
 
 - **Spec no Notion:** ainda não existe (proposta, derivada de `painel-login-e-acesso.md`)
-- **Card:** sem card ainda
+- **Card:** [DEV] Login e acesso do painel (https://trello.com/c/zuas9jXb)
 - **Status:** proposta, precisa de aprovação do time
 - **Depende de:** `painel-login-e-acesso.md`, schema multi-tenant e RLS
 

@@ -1,7 +1,7 @@
 # [PAINEL] [MVP] Clientes e importação de CSV
 
-- **Spec:** https://app.notion.com/p/3f9180da236f81a693eafbbf5b5e7fb9
-- **Card:** sem card ainda
+- **Origem:** versão do Notion removida em 19/out/2026; este arquivo é a fonte
+- **Card:** [DEV] Clientes e importação de CSV (https://trello.com/c/yxQfkaEv)
 - **Status:** spec escrita, não implementada
 - **Decisões gerais:** https://app.notion.com/p/3f9180da236f8158a3bfddefb9a0f222
 - **Como o agente usa o cliente:** `agente-conversa-e-identificacao.md`

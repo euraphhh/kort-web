@@ -1,7 +1,7 @@
 # [PAINEL] [MVP] WhatsApp e agente
 
-- **Spec:** https://app.notion.com/p/3f9180da236f810a881dfaa9236e1f9f
-- **Card:** sem card ainda
+- **Origem:** versão do Notion removida em 19/out/2026; este arquivo é a fonte
+- **Card:** [DEV] Onboarding do dono e tela WhatsApp e agente (https://trello.com/c/Briewcow)
 - **Status:** spec escrita, não implementada
 - **Decisões gerais:** https://app.notion.com/p/3f9180da236f8158a3bfddefb9a0f222
 - **Comportamento do agente:** `agente-handoff-para-humano.md` e `agente-canal-whatsapp.md`
