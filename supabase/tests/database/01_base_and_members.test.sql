@@ -1,7 +1,7 @@
 begin;
 create extension if not exists pgtap with schema extensions;
 
-select plan(21);
+select plan(26);
 
 -- fixtures (as the postgres superuser) ---------------------------------------
 
@@ -73,13 +73,27 @@ select throws_ok(
     values ('00000000-0000-0000-0000-00000000bbbb', '00000000-0000-0000-0000-0000000000c1')$$,
   '42501', null, 'owner cannot create an invite for another barbershop');
 
+select throws_ok(
+  $$insert into public.invite (barbershop_id, professional_id, expires_at)
+    values ('00000000-0000-0000-0000-00000000aaaa', '00000000-0000-0000-0000-0000000000c1',
+      now() + interval '10 years')$$,
+  '42501', null, 'owner cannot set the invite expiry');
+
+select is(
+  (select created_by from public.invite where barbershop_id = '00000000-0000-0000-0000-00000000aaaa'),
+  '00000000-0000-0000-0000-0000000000a1'::uuid,
+  'invite created_by defaults to the logged in user');
+
 -- barber of A --------------------------------------------------------------
 
 select set_config('request.jwt.claims',
   '{"sub":"00000000-0000-0000-0000-0000000000a2","role":"authenticated"}', true);
 
-select is((select count(*)::int from public.barbershop), 1,
-  'barber sees only their own barbershop');
+select is((select count(*)::int from public.barbershop), 0,
+  'barber cannot read the barbershop table (WhatsApp number, rules)');
+
+select is((select count(*)::int from public.barbershop_summary), 1,
+  'barber sees only their own barbershop through the summary view');
 
 select is((select count(*)::int from public.barbershop_member), 1,
   'barber sees only their own member row');
@@ -144,12 +158,19 @@ select throws_ok(
 
 set local role authenticated;
 select set_config('request.jwt.claims',
+  '{"sub":"00000000-0000-0000-0000-0000000000b1","role":"authenticated"}', true);
+select is((select count(*)::int from public.barbershop_member), 1,
+  'owner of B sees only the members of B');
+
+select set_config('request.jwt.claims',
   '{"sub":"00000000-0000-0000-0000-0000000000a2","role":"authenticated"}', true);
 select is(public.is_staff(), false, 'is_staff is false without the claim');
 
 select set_config('request.jwt.claims',
   '{"sub":"00000000-0000-0000-0000-0000000000a2","role":"authenticated","app_metadata":{"kort_role":"staff"}}', true);
 select is(public.is_staff(), true, 'is_staff is true with app_metadata.kort_role = staff');
+select is((select count(*)::int from public.barbershop), 2,
+  'staff can read every barbershop');
 
 select * from finish();
 rollback;

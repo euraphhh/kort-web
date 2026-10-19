@@ -74,7 +74,7 @@ create table public.invite (
   token uuid not null unique default gen_random_uuid(),
   expires_at timestamptz not null default now() + interval '24 hours',
   accepted_at timestamptz,
-  created_by uuid references auth.users (id) on delete set null,
+  created_by uuid default auth.uid() references auth.users (id) on delete set null,
   created_at timestamptz not null default now()
 );
 
@@ -163,7 +163,10 @@ grant update (name, address, default_ddd, min_notice_minutes, cancel_limit_minut
   on public.barbershop to authenticated;
 
 grant select, delete on public.barbershop_member to authenticated;
-grant select, insert, delete on public.invite to authenticated;
+-- The owner picks only barbershop and professional. token, expires_at (24h), accepted_at and
+-- created_by (auth.uid()) are set by the database, so an owner cannot stretch an invite's lifetime.
+grant select, delete on public.invite to authenticated;
+grant insert (barbershop_id, professional_id) on public.invite to authenticated;
 
 -- RLS ----------------------------------------------------------------------
 
@@ -171,9 +174,20 @@ alter table public.barbershop enable row level security;
 alter table public.barbershop_member enable row level security;
 alter table public.invite enable row level security;
 
+-- Owners and the team read the full row. Barbers see the shop's own agenda only, so they get
+-- the narrow view below instead of WhatsApp number, connection status and rules.
 create policy barbershop_select on public.barbershop
   for select to authenticated
-  using (public.is_member(id) or public.is_staff());
+  using (public.is_owner(id) or public.is_staff());
+
+-- Runs with the view owner's rights (bypasses RLS on purpose); the filter is the isolation.
+create view public.barbershop_summary as
+  select b.id, b.name
+  from public.barbershop b
+  where public.is_member(b.id) or public.is_staff();
+
+revoke all on public.barbershop_summary from anon, authenticated;
+grant select on public.barbershop_summary to authenticated;
 
 create policy barbershop_update on public.barbershop
   for update to authenticated
