@@ -69,14 +69,14 @@ isOneToOne: false
                   ]
                 },"barbershop": {
                   Row: {
-                    "address": string | null,"agent_enabled": boolean,"cancel_limit_minutes": number,"created_at": string,"default_ddd": string | null,"id": string,"min_notice_minutes": number,"name": string,"updated_at": string,"whatsapp_connection_status": string,"whatsapp_phone_number": string | null
+                    "address": string | null,"agent_enabled": boolean,"cancel_limit_minutes": number,"created_at": string,"default_ddd": string | null,"id": string,"max_advance_days": number,"min_notice_minutes": number,"name": string,"updated_at": string,"whatsapp_connection_status": string,"whatsapp_phone_number": string | null
                   }
                   ComputedFields: never
                   Insert: {
-                    "address"?: string | null,"agent_enabled"?: boolean,"cancel_limit_minutes"?: number,"created_at"?: string,"default_ddd"?: string | null,"id"?: string,"min_notice_minutes"?: number,"name": string,"updated_at"?: string,"whatsapp_connection_status"?: string,"whatsapp_phone_number"?: string | null
+                    "address"?: string | null,"agent_enabled"?: boolean,"cancel_limit_minutes"?: number,"created_at"?: string,"default_ddd"?: string | null,"id"?: string,"max_advance_days"?: number,"min_notice_minutes"?: number,"name": string,"updated_at"?: string,"whatsapp_connection_status"?: string,"whatsapp_phone_number"?: string | null
                   }
                   Update: {
-                    "address"?: string | null,"agent_enabled"?: boolean,"cancel_limit_minutes"?: number,"created_at"?: string,"default_ddd"?: string | null,"id"?: string,"min_notice_minutes"?: number,"name"?: string,"updated_at"?: string,"whatsapp_connection_status"?: string,"whatsapp_phone_number"?: string | null
+                    "address"?: string | null,"agent_enabled"?: boolean,"cancel_limit_minutes"?: number,"created_at"?: string,"default_ddd"?: string | null,"id"?: string,"max_advance_days"?: number,"min_notice_minutes"?: number,"name"?: string,"updated_at"?: string,"whatsapp_connection_status"?: string,"whatsapp_phone_number"?: string | null
                   }
                   Relationships: [
                     
