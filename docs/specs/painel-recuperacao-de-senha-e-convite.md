@@ -2,7 +2,7 @@
 
 - **Spec no Notion:** ainda não existe (proposta, derivada de `painel-login-e-acesso.md`)
 - **Card:** [DEV] Login e acesso do painel (https://trello.com/c/zuas9jXb)
-- **Status:** proposta, precisa de aprovação do time
+- **Status:** proposta, precisa de aprovação do time. Implementado em 20/out/2026: telas 1, 2 e 3 (login, esqueci a senha e redefinir senha). A tela 4 (aceitar convite) fica com o card Equipe e convites, que cria os convites e define como o link é lido (função no banco ou chave de serviço).
 - **Depende de:** `painel-login-e-acesso.md`, schema multi-tenant e RLS
 
 ## Objetivo
@@ -24,15 +24,15 @@ Transformar em telas o que a spec de Login e acesso já exige: recuperação de 
 
 ## Critérios de aceite
 
-- [ ] Recuperação de senha funciona por e-mail (critério da spec de Login).
+- [x] Recuperação de senha funciona por e-mail (critério da spec de Login). Feito em 20/out/2026: esqueci a senha, link do e-mail (`/auth/confirm`) e redefinir senha (`/reset-password`).
 - [ ] Convite por link cria o acesso do barbeiro já ligado ao profissional correto (critério da spec de Login).
-- [ ] Link já usado ou expirado mostra mensagem clara e leva a pedir novo.
-- [ ] A tela de "esqueci a senha" não revela se o e-mail existe.
+- [x] Link já usado ou expirado mostra mensagem clara e leva a pedir novo. (Vale para o link de redefinição; o do convite vem com o card de equipe.)
+- [x] A tela de "esqueci a senha" não revela se o e-mail existe.
 - [ ] Todas as telas funcionam no celular e nos temas claro e escuro, com foco visível e rótulos nos campos.
 
 ## Em aberto
 
 - [x] **Decidido (19/out/2026):** o convite expira e pode ser reenviado pelo dono.
 - [x] **Decidido (19/out/2026):** o convite expira em 24h.
-- [ ] Regra mínima de senha.
+- [x] **Decidido (20/out/2026):** regra de senha: no mínimo 8 caracteres, com letra maiúscula, minúscula, número e símbolo. No Supabase é `password_requirements = lower_upper_letters_digits_symbols`. Pendente de refletir no Notion.
 - [ ] Texto dos e-mails (voz e conteúdo precisam de aprovação do time).
