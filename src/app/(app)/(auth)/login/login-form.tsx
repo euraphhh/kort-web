@@ -5,6 +5,7 @@ import { useActionState, useState } from "react";
 import { AppleIcon, GoogleIcon } from "@/components/ui/brand-icons";
 import { Button } from "@/components/ui/button";
 import { AlertIcon } from "@/components/ui/icons";
+import { PasswordField } from "@/components/ui/password-field";
 import { TextField } from "@/components/ui/text-field";
 import { login, type LoginState } from "./actions";
 
@@ -12,7 +13,6 @@ const initialState: LoginState = {};
 
 export function LoginForm() {
   const [state, formAction, pending] = useActionState(login, initialState);
-  const [showPassword, setShowPassword] = useState(false);
   const [provider, setProvider] = useState<"Google" | "Apple" | null>(null);
 
   return (
@@ -63,23 +63,11 @@ export function LoginForm() {
           error={state.fieldErrors?.email}
         />
         <div className="flex flex-col gap-(--space-1)">
-          <TextField
+          <PasswordField
             name="password"
             label="Senha"
-            type={showPassword ? "text" : "password"}
             autoComplete="current-password"
             error={state.fieldErrors?.password}
-            trailing={
-              <button
-                type="button"
-                aria-label={showPassword ? "Ocultar senha" : "Mostrar senha"}
-                aria-pressed={showPassword}
-                onClick={() => setShowPassword((visible) => !visible)}
-                className="inline-flex min-h-target-min items-center rounded-md px-(--space-4) text-caption font-semibold text-accent hover:text-accent-strong focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus-ring"
-              >
-                {showPassword ? "Ocultar" : "Mostrar"}
-              </button>
-            }
           />
           <Link
             href="/forgot-password"
