@@ -45,13 +45,14 @@ test.describe("login", () => {
     await expect(email(page)).toHaveValue("sem-arroba");
   });
 
-  test("says login is not available yet, without clearing the e-mail", async ({ page }) => {
+  test("shows a form error for a login that fails, without clearing the e-mail", async ({ page }) => {
     await email(page).fill("dono@barbearia.com");
     await password(page).fill("segredo");
     await submit(page).click();
     // Next.js has its own role="alert" (route announcer), so scope this to the login section.
     await expect(page.getByRole("region", { name: "Entrar" }).getByRole("alert")).toContainText(
-      "Entrar ainda não está disponível",
+      // Without Supabase in the environment: "não está disponível"; with it: wrong credentials.
+      /Entrar não está disponível|E-mail ou senha incorretos/,
     );
     await expect(email(page)).toHaveValue("dono@barbearia.com");
   });
