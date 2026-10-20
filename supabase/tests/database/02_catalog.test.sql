@@ -207,7 +207,9 @@ select is(
 select set_config('request.jwt.claims',
   '{"sub":"00000000-0000-0000-0000-0000000000e1","role":"authenticated","app_metadata":{"kort_role":"staff"}}', true);
 
-select is((select count(*)::int from public.professional), 3,
+-- Only this file's own barbershops: the local seed adds a demo one.
+select is((select count(*)::int from public.professional
+  where barbershop_id in ('00000000-0000-0000-0000-00000000aaaa', '00000000-0000-0000-0000-00000000bbbb')), 3,
   'staff can read every professional');
 
 -- anonymous ----------------------------------------------------------------

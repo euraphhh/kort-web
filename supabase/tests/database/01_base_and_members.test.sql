@@ -174,7 +174,8 @@ select is(public.is_staff(), false, 'is_staff is false without the claim');
 select set_config('request.jwt.claims',
   '{"sub":"00000000-0000-0000-0000-0000000000a2","role":"authenticated","app_metadata":{"kort_role":"staff"}}', true);
 select is(public.is_staff(), true, 'is_staff is true with app_metadata.kort_role = staff');
-select is((select count(*)::int from public.barbershop), 2,
+-- Only this file's own barbershops: the local seed adds a demo one.
+select is((select count(*)::int from public.barbershop where id in ('00000000-0000-0000-0000-00000000aaaa', '00000000-0000-0000-0000-00000000bbbb')), 2,
   'staff can read every barbershop');
 
 select * from finish();
